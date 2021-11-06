@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head section in HTML is used for declaring meta data, style sheets, scripts, etc. -Jake -->
+<head>
+    <!-- META DATA -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- STYLE SHEETS -->
+    <link rel="stylesheet" type="text/css" href="style/fullpage.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="style/index.css" />
+    <link rel="stylesheet" type="text/css" href="style/bootstrap-overrides.css" />
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
+    <!-- SCRIPTS (Only scripts that do not interact directly with the HTML that we have written)-->
+    <script type="text/javascript" src="script/scrolloverflow.js"></script>
+    <script type="text/javascript" src="script/fullpage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.0.2/cleave.min.js" integrity="sha512-SvgzybymTn9KvnNGu0HxXiGoNeOi0TTK7viiG0EGn2Qbeu/NFi3JdWrJs2JHiGA1Lph+dxiDv5F9gDlcgBzjfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+
+<div id="fullpage">
+    <!-- CONNECT TO BOT PAGE -->
+    <div id="connect_display" class="section" data-anchor="connect">
+        <div class="container-fluid bg-pan-top" id="connect_page">
+            <div class="connect_page_welcome">
+                <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_ofa3xwo7.json"  background="transparent"  speed="1"  style="margin-left: auto; margin-right: auto; max-height: 200px; max-width: 200px;"  loop  autoplay></lottie-player>
+                <h1>Competition Data Suite</h1>
+                <p>Engineered By CBU Software Lab<p>
+            </div>
+            <div class="connect_contents">
+                <form>
+                    <div class="form_contents" onsubmit="return false">
+                        <input type="text" class="textfield" id="deviceNumber" autocomplete="off">
+                        <div class="submit-wrapper">
+                            <button class="submit" onClick="getDevice();"><i class="bi bi-caret-right"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <p style="font-size: 12px; margin-top: 5%">Cant Find Device ID? <a href="#" onClick="deviceHelp();">Help</a>!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DATA DISPLAY PAGE-->
+    <div id="data_display" class="section" data-anchor="data">
+        <div class="" id="data_page">
+            <div class="container-fluid" id="data_header">
+                <h3 id="deviceNumberHeader">Device ID: ##</h3>
+            </div>
+            <div class="container-fluid" id="light_data">
+                <div class="light_data_header">
+                    <h6 style="margin-left: 2%">
+                        <i class="bi-lightbulb" style="align-self: center;"></i>
+                        LIGHT SENSORS
+                    </h6>
+                </div>
+                <div class="light_data_body">
+                    <div style="width: 30%; display: flex; flex-direction: column; justify-content: flex-start;">
+                        <h1 id="light_sensor_1">0</h1>
+                    </div>
+                    <div>
+                        <canvas id="lightChart" width="95%" height="95%"></canvas>
+                    </div>
+                    <div style="width: 30%; display: flex; flex-direction: column; justify-content: flex-end;">
+                        <h1 id="light_sensor_2">0</h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid" id="distance_data">
+                <div class="distance_data_header">
+                    <h6 style="margin-left: 2%">
+                        <i class="bi-rulers" style="align-self: center;"></i>
+                        DISTANCE SENSORS
+                    </h6>
+                </div>
+
+                <div class="distance_data_body">
+                    <div style="width: 30%; display: flex; flex-direction: column; justify-content: flex-start;">
+                        <h1 id="distance_sensor_1">0</h1>
+                    </div>
+                    <div>
+                        <canvas id="distanceChart" width="95%" height="95%"></canvas>
+                    </div>
+                    <div style="width: 30%; display: flex; flex-direction: column; justify-content: flex-end;">
+                        <h1 id="distance_sensor_2">0</h1>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container-fluid" id="voltage_data">
+                <div class="voltage_data_header">
+                    <h6 style="margin-left: 2%">
+                        <i class="bi-lightning" style="align-self: center;"></i>
+                        VOLTAGE SENSORS
+                    </h6>
+                </div>
+                <div class="voltage_data_body">
+                    <div style="width: 30%; display: flex; flex-direction: column; justify-content: flex-start;">
+                        <h1 id="voltage_sensor_1">0</h1>
+                    </div>
+                    <div>
+                        <canvas id="voltageChart" width="95%" height="95%"></canvas>
+                    </div>
+                    <div style="width: 30%; display: flex; flex-direction: column; justify-content: flex-end;">
+                        <h1 id="voltage_sensor_2">0</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid" id="data_footer">
+                <div class="data_footer_buttons">
+                    <button type="button" id="disconnectDeviceButton" class="disconnectDeviceButton" onClick="destroyDevice();">
+                        <i class="bi bi-power"></i>
+                    </button>
+                    <!-- USED FOR MANUAL TESTING
+                    <button type="button" id="dataSnapshotButton" class="dataSnapshotButton" onClick="generateChartData();">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                    </button>
+                     -->
+                    <button type="button" id="dataSnapshotButton" class="dataSnapshotButton" onClick="captureChartData();">
+                        <i class="bi bi-camera"></i>
+                    </button>
+                </div>
+                <div id="new_capture_animation" class="data_footer_notification hidden">
+                    <lottie-player src="https://assets4.lottiefiles.com/private_files/lf30_NnBW3K.json"  background="transparent"  speed="1"  style="width: 20%; height: 20%; margin-left: auto; margin-right: auto; margin-top: 25%"  loop  autoplay></lottie-player>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- CAPTURE DISPLAY PAGE-->
+    <div id="capture_display" class="section" data-anchor="captures">
+        <div class="" id="capture_page">
+        </div>
+    </div>
+
+</div>
+
+<!-- SCRIPTS (Interact directly with our written HTML)-->
+<script type="text/javascript" src="script/charts.js"></script>
+<script type="text/javascript" src="script/capture.js"></script>
+<script type="text/javascript" src="script/devices.js"></script>
+<script type="text/javascript" src="script/displays.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>
