@@ -1,385 +1,76 @@
-/*Color Pallet
-Dark (Grey): #2C3E50
-Light (White): #ECF0F1
-Primary (Red): #E74C3C
-
-Secondary 1 (Light Blue): #3498DB
-Secondary 1 (Blue): #2980B9
-*/
+/*------------------------------
+FONTS
+------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500&display=swap');
 
 /*------------------------------
-MASTER CLASSES AND ELEMENTS
-USED FOR BASIC FUNCTIONALITY
+IMAGE STYLES
 ------------------------------*/
-
-/*Used to hide elements from the page*/
-.hidden{
-    display: none;
+.logo {
+    
 }
-
-/*Setting Background Color so it looks find with over scrolling*/
-body{
-    background-color: #08243b !important;
-}
-
 
 /*------------------------------
-CONNECT SECTION OF THE
-WEB APPLICATION PAGE
+PAGE HIERARCHY STYLES
 ------------------------------*/
-#connect_page{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.page {
+    height: 100vh;
     width: 100vw;
-    justify-content: center;
-    background: #08243b;
-    color: #ECF0F1;
+    font-family: 'Mulish';
+    background-image: linear-gradient(to bottom, #1c2471 78%, #ff394c);
+    display: grid;
+    place-content: center;
 }
 
-.connect_page_welcome{
-    padding-top: 5%;
-    align-self: center;
-    text-align: center;
-    height: 70%;
+.margins {
+    height: 100vh;
+    width: min(700px, 90vw);
 }
 
-/*Used to format the centering of thetext H1 tags
-and HTML form on the connect page.*/
-.connect_contents{
-    display: flex;
-    align-self: center;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    height: 25%;
-}
-
-/*Used to format the HTML form on the connect page.*/
-.form_contents{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.submit-wrapper{
-    width: 30%;
-}
-
-
-/*Used to format anything with the class "submit" within the HTML form
-on the connect page.*/
-.submit{
+.navbar{
+    position: sticky;
+    top: 100vh;
     width: 100%;
-    height:100%;
-    align-self: center;
-
-    color: #ECF0F1;
-    background-color: #2C3E50 !important;
-    border-color: transparent !important;
+    height: 5vh;
 }
 
-.submit:hover{
-    border-color: transparent !important;
+.window {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    box-shadow: 2px 5px 10px 0 rgba(0, 0, 0, 0.16);
+    background: #f1f1f1;
 }
 
-.submit:active{
-    border-color: transparent !important;
+
+/*------------------------------
+TEXT STYLES
+------------------------------*/
+.header {
+    font-weight: bold;
+    color: #f1f1f1;
+    font-size: max(20px);
+    text-align: center;
+    width: 100%;
 }
 
-.submit:focus{
-    border-color: transparent !important;
+.sub_header {
+    font-weight: normal;
+    color: #0c108e;
+    font-size: max(20px);
+    text-align: center;
+    width: 100%;
 }
 
-/*Used to format anything with the class "textfield" within the HTML form
-on the connect page.*/
-.textfield{
-    width: 80%;
-    outline: none;
-    color: #ECF0F1;
-    background-color: transparent;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
-}
-
-/*Removes the auto formating for auto fill*/
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-    background: #000000 !important;
-}
-
-/*Removing some basic default Chrome web kits that force certain formating
-so that ours can overwrite it.*/
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-input[type=number] {
-    -moz-appearance: textfield;
+.data_header{
+    font-weight: bold;
+    color: #26308f;
+    width: 100%;
 }
 
 /*------------------------------
-DATA SECTION OF THE
-WEB APPLICATION PAGE
+GRID OVERRIDES
 ------------------------------*/
-#data_page{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    background-color: #08243b;
-}
-
-/*Header of the data page. Where the Bot ID is displayed*/
-#data_header{
-    display: flex;
-    flex-direction: column;
-    height: 10.5%;
-    width: 92%;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #08263c;
-    color: #ECF0F1;
-}
-
-/*Light sensor graphs and data display section.*/
-#light_data{
-    display: flex;
-    flex-direction: column;
-    height: 23%;
-    width: 92%;
-    padding-left: 0px;
-    padding-right: 0px;
-    margin-top: 2%;
-    justify-content: flex-start;
-    background-color: #08263c;
-    color: #ECF0F1;
-}
-
-.light_data_header{
-    height: 20%;
-    text-align:center;
-    display:flex;
-    align-items: flex-end;
-    color: white;
-
-    background-color: #218692;
-}
-
-.light_data_body{
-    height: 80%;
-    text-align:center;
-    display:flex;
-    align-items: center;
-    color: white;
-    justify-content: center;
-}
-
-/*Distance sensor graphs and data display section.*/
-#distance_data{
-    display: flex;
-    flex-direction: column;
-    height: 23%;
-    width: 92%;
-    margin-top: 2%;
-    padding-left: 0px;
-    padding-right: 0px;
-    justify-content: flex-start;
-    background-color: #08263c;
-    color: #ECF0F1;
-}
-
-.distance_data_header{
-    height: 20%;
-    text-align:center;
-    display:flex;
-    align-items: flex-end;
-    color: white;
-    background-color: #e5d947;
-}
-
-.distance_data_body{
-    height: 80%;
-    text-align:center;
-    display:flex;
-    align-items: center;
-    color: white;
-    justify-content: center;
-}
-
-/*Voltage sensor graphs and data display section.*/
-#voltage_data{
-    display: flex;
-    flex-direction: column;
-    height: 23%;
-    width: 92%;
-    margin-top: 2%;
-    padding-left: 0px;
-    padding-right: 0px;
-    justify-content: flex-start;
-    background-color: #08263c;
-    color: #ECF0F1;
-}
-
-.voltage_data_header{
-    height: 20%;
-    text-align:center;
-    display:flex;
-    align-items: flex-end;
-    color: white;
-    background-color: #f04e51;
-}
-
-.voltage_data_body{
-    height: 80%;
-    text-align:center;
-    display:flex;
-    align-items: center;
-    color: white;
-    justify-content: center;
-}
-
-/*Footer of the data page. Where the various buttons are*/
-#data_footer{
-    display: flex;
-    flex-direction: column;
-    height: 10.5%;
-    margin-top: 2%;
-    width: 92%;
-    padding-left: 0px;
-    padding-right: 0px;
-    justify-content: center;
-    align-items: center;
-    background-color: #08243b;
-    color: #ECF0F1;
-}
-
-.data_footer_buttons{
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-    align-items: flex-start;
-    z-index: 1;
-}
-
-.data_footer_notification{
-    position: fixed;
-    left: 50%;
-    transform: translate(-50%, 0);
-    z-index: 0;
-}
-
-.disconnectDeviceButton{
-    width: 15%;
-    height: 50%;
-    color: #ECF0F1;
-    background-color: #2C3E50 !important;
-    border-color: transparent !important;
-}
-
-.dataSnapshotButton{
-    width: 15%;
-    height: 50%;
-    color: #ECF0F1;
-    background-color: #2C3E50 !important;
-    border-color: transparent !important;
-    margin-left: 5%;
-}
-
-.dataRefreshButton{
-    width: 15%;
-    height: 50%;
-    color: #ECF0F1;
-    background-color: #2C3E50 !important;
-    border-color: transparent !important;
-    margin-left: 5%;
-}
-
-/*------------------------------
-CAPTURE SECTION OF THE
-WEB APPLICATION PAGE
-------------------------------*/
-#capture_page{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: flex-start;
-    background-color: #08243b;
-}
-
-.capture_parent{
-    display: flex;
-    margin-top: 5%;
-    color: #ECF0F1;
-    flex-direction: column;
-    height: 20%;
-    width: 92%;
-    background-color: #08263c;
-}
-
-.capture_header_blue{
-    display: flex;
-    flex-direction: row;
-    height: 20%;
-    width: 100%;
-    background-color: #218692;
-}
-
-.capture_header_yellow{
-    display: flex;
-    flex-direction: row;
-    height: 20%;
-    width: 100%;
-    background-color: #e5d947;
-}
-
-.capture_header_red{
-    display: flex;
-    flex-direction: row;
-    height: 20%;
-    width: 100%;
-    background-color: #f04e51;
-}
-
-.capture_header_title{
-    width: 50%;
-    margin-left: 5%;
-    text-align: left;
-}
-
-.capture_header_time{
-    width: 50%;
-    margin-right: 5%;
-    text-align: right;
-}
-
-.capture_body{
-    display: flex;
-    flex-direction: row;
-    height: 80%;
-}
-
-.capture_data{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 70%;
-}
-
-.capture_graph{
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    width: 30%;
+.ignore_padding{
+    padding: 0px !important;
 }

@@ -18,12 +18,12 @@ async function getDevice(){
 
         if(input <= 9){
             let inputString = '00' + parseInt(input, 10);
-            targetedDisplay.innerHTML = "Device ID: " + inputString;
+            targetedDisplay.innerHTML = "BOT -  " + inputString;
         }else if(input <= 99){
             let inputString = '0' + parseInt(input, 10);
-            targetedDisplay.innerHTML = "Device ID: " + inputString;
+            targetedDisplay.innerHTML = "BOT - " + inputString;
         }else{
-            targetedDisplay.innerHTML = "Device ID: " + parseInt(input, 10);
+            targetedDisplay.innerHTML = "BOT - " + parseInt(input, 10);
         }
 
         // Firing off the toast for the user to see.
@@ -44,10 +44,10 @@ async function getDevice(){
         })
 
         onTransitionPage();
-        await sleep(1.4);
+        await sleep(0.01);
         fullpages.moveSectionDown();
         onMiddlePage();
-        await sleep(1.0);
+        await sleep(0.01);
         generateChartData();
     }
     // Error Handling

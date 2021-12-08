@@ -16,20 +16,30 @@ const lightChart = new Chart(lightctx, {
             label: '',
             data: [0, 0],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.5)',
-                'rgba(54, 162, 235, 0.2)'
+                'rgba(122, 126, 194, 1)',
+                'rgba(235, 76, 83, 1)'
             ],
             borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)'
+                'rgba(122, 126, 194, 1)',
+                'rgba(235, 76, 83, 1)'
             ],
             borderWidth: 1
         }]
     },
     options: {
+        circumference: 180,
+        rotation: 270,
+        percentageInnerCutout: 1,
         plugins:{
             legend:{
                 display: false
+            },
+            datalabels:{
+                anchor: 'end',
+                align: 'end',
+                clamp: true,
+                offset: -1,
+                
             }
         },
         events: []
@@ -41,6 +51,7 @@ const lightChart = new Chart(lightctx, {
 // --------------------------------
 const distancectx = document.getElementById('distanceChart').getContext('2d');
 const distanceChart = new Chart(distancectx, {
+    plugins: [ChartDataLabels],
     type: 'bar',
     data: {
         labels: ['', ''],
@@ -48,13 +59,13 @@ const distanceChart = new Chart(distancectx, {
             label: '',
             data: [0, 0],
             backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 99, 132, 0.2)'
+                'rgba(122, 126, 194, 1)',
+                'rgba(235, 76, 83, 1)'
 
             ],
             borderColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 99, 132, 1)'
+                'rgba(122, 126, 194, 1)',
+                'rgba(235, 76, 83, 1)'
             ],
             borderWidth: 1
         }]
@@ -62,13 +73,24 @@ const distanceChart = new Chart(distancectx, {
     options: {
         plugins:{
             legend:{
-                display: false
+                display: false,
+            },
+            datalabels:{
+                color: '#26308f',
+                anchor: 'end',
+                align: 'end',
+                font:{
+                    size: 15,
+                    family: 'Mulish',
+                    weight: 600
+                }
             }
         },
         scales: {
             y: {
                 beginAtZero: true,
-                display: false
+                display: false,
+                max: 120
             },
             x: {
                 display: false

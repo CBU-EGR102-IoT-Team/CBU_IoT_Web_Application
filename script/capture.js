@@ -41,47 +41,33 @@ function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, dis
     let newCapture = document.createElement('div');
     let newCaptureId = 'capture_' + captureCount;
     newCapture.id = newCaptureId;
+    newCapture.classList.add("window");
     newCapture.classList.add("capture_parent");
     newCapture.classList.add("container-fluid");
-
-    // Creating the header for each new capture
-    let newCaptureHeader = document.createElement('div');
-    newCaptureHeader.classList.add(headerColor());
-
-    let captureTitle = document.createElement('p');
-    captureTitle.classList.add("capture_header_title");
-    captureTitle.innerHTML = 'Capture ' + captureCount;
-
-    let today = new Date();
-    let captureTime = document.createElement('p');
-    captureTime.classList.add("capture_header_time");
-    captureTime.innerHTML = today.getHours() + ":" + today.getMinutes();
-    newCaptureHeader.appendChild(captureTitle);
-    newCaptureHeader.appendChild(captureTime);
-
-    // Creating the body for each new cpature
-    let newCaptureBody = document.createElement('div');
-    newCaptureBody.id = newCaptureId;
-    newCaptureBody.classList.add("capture_body");
-
-    let captureData = document.createElement('div');
-    captureData.classList.add("capture_data");
-    let lightSensors = document.createElement('p');
-    lightSensors.innerHTML = '<i class="bi-lightbulb"></i>' + ' ' + lightSensor1 + ', ' + lightSensor2;
-    let distanceSensors = document.createElement('p');
-    distanceSensors.innerHTML = '<i class="bi-rulers"></i>' + ' ' + distanceSensor1 + ', ' + distanceSensor2;
-    let voltageSensors = document.createElement('p');
-    voltageSensors.innerHTML = '<i class="bi-lightning"></i>' + ' ' + voltageSensor1 + ', ' + voltageSensor2;
-    captureData.appendChild(lightSensors);
-    captureData.appendChild(distanceSensors);
-    captureData.appendChild(voltageSensors);
-
-    newCaptureBody.appendChild(captureData);
-
-
-
-    newCapture.appendChild(newCaptureHeader);
-    newCapture.appendChild(newCaptureBody);
+    
+    // Light
+    let title = document.createElement('span');
+    title.innerHTML = 'Light'
+    
+    let lightTitle = document.createElement('div');
+    lightTitle.appendChild(title);
+    
+    
+    let lightSlice = document.createElement('div');
+    
+    // Separator
+    let sep = document.createElement('div');
+    sep.classList.add('separator');
+    newCapture.appendChild(sep);
+    
+    // Distance
+    
+    // Separator
+    sep = document.createElement('div');
+    sep.classList.add('separator');
+    newCapture.appendChild(sep);
+    
+    // Voltage
 
     let capturePage = document.getElementById("capture_page");
     capturePage.appendChild(newCapture);
