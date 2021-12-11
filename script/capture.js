@@ -39,35 +39,69 @@ function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, dis
 
     // Creating the parent capture div
     let newCapture = document.createElement('div');
-    let newCaptureId = 'capture_' + captureCount;
-    newCapture.id = newCaptureId;
+    newCapture.id = 'capture_' + captureCount;
     newCapture.classList.add("window");
-    newCapture.classList.add("capture_parent");
-    newCapture.classList.add("container-fluid");
+    newCapture.classList.add("capture");
     
-    // Light
-    let title = document.createElement('span');
-    title.innerHTML = 'Light'
+    let cloneChart = (chart, newLoc) => new Chart(
+       newLoc, {
+        plugins: [ChartDataLabels],
+        type: chart.config.type,
+        data: chart.config.data, 
+        options:chart.config.options
+    });
     
-    let lightTitle = document.createElement('div');
-    lightTitle.appendChild(title);
+    // Distance
+    let distanceSliver = document.createElement('div');
+    distanceSliver.classList.add('capture_sliver');
+    distanceSliver.innerHTML = 
+        "<div class=\"distance_data_header\" style=\"width: 100%; text-align: center\"><h5 class=\"sub_header\" style=\"height: 20%\">Distance</h5></div>";
     
+    let distanceCapture = document.createElement('canvas');
+    distanceCapture.id = `c${captureCount}-d`;
+    distanceCapture.style.height = '16vh';
+    distanceSliver.appendChild(distanceCapture);
+    newCapture.appendChild(distanceSliver);
     
-    let lightSlice = document.createElement('div');
+    cloneChart(distanceChart, distanceCapture.getContext('2d'));
     
     // Separator
     let sep = document.createElement('div');
     sep.classList.add('separator');
     newCapture.appendChild(sep);
     
-    // Distance
+    // Light
+    let lightSliver = document.createElement('div');
+    lightSliver.classList.add('capture_sliver');
+    lightSliver.innerHTML = 
+        "<div class=\"light_data_header\" style=\"width: 100%; text-align: center\"><h5 class=\"sub_header\" style=\"height: 20%\">Light</h5></div>";
+    
+    let lightCapture = document.createElement('canvas');
+    lightCapture.id = `c${captureCount}-l`;
+    lightCapture.style.height = '16vh';
+    lightSliver.appendChild(lightCapture);
+    newCapture.appendChild(lightSliver);
+    
+    cloneChart(lightChart, lightCapture.getContext('2d'));
     
     // Separator
     sep = document.createElement('div');
     sep.classList.add('separator');
     newCapture.appendChild(sep);
     
-    // Voltage
+    // voltage
+    let voltageSliver = document.createElement('div');
+    voltageSliver.classList.add('capture_sliver');
+    voltageSliver.innerHTML = 
+        "<div class=\"voltage_data_header\" style=\"width: 100%; text-align: center\"><h5 class=\"sub_header\" style=\"height: 20%\">Voltage</h5></div>";
+    
+    let voltageCapture = document.createElement('canvas');
+    voltageCapture.id = `c${captureCount}-v`;
+    voltageCapture.style.height = '16vh';
+    voltageSliver.appendChild(voltageCapture);
+    newCapture.appendChild(voltageSliver);
+    
+    cloneChart(voltageChart, voltageCapture.getContext('2d'));
 
     let capturePage = document.getElementById("capture_page");
     capturePage.appendChild(newCapture);
@@ -81,13 +115,13 @@ Picks out a header color based on which number the global variable is on.
 2 = red (resets back to 0)
 */
 function headerColor(){
-    if(captureColor == 0){
+    if (captureColor == 0) {
         captureColor = captureColor + 1;
         return 'capture_header_blue';
-    }else if(captureColor == 1){
+    } else if (captureColor == 1) {
         captureColor = captureColor + 1;
         return 'capture_header_yellow';
-    }else{
+    } else {
         captureColor = 0;
         return 'capture_header_red';
     }

@@ -54,6 +54,9 @@ function onTopPage(){
     blockScrolling.classList.remove("fp-section");
     blockScrolling = document.getElementById('capture_display');
     blockScrolling.classList.remove("fp-section");
+    
+    let header = document.getElementById("header");
+    header.classList.add("hide");
 }
 
 /*Enables scrolling to the middle page from the top page.

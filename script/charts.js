@@ -27,9 +27,10 @@ const lightChart = new Chart(lightctx, {
         }]
     },
     options: {
-        circumference: 180,
-        rotation: 270,
+        circumference: 360,
         percentageInnerCutout: 1,
+        responsive: true,
+        maintainAspectRatio: false,
         plugins:{
             legend:{
                 display: false
@@ -39,7 +40,6 @@ const lightChart = new Chart(lightctx, {
                 align: 'end',
                 clamp: true,
                 offset: -1,
-                
             }
         },
         events: []
@@ -71,6 +71,7 @@ const distanceChart = new Chart(distancectx, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         plugins:{
             legend:{
                 display: false,
@@ -105,39 +106,70 @@ const distanceChart = new Chart(distancectx, {
 // --------------------------------
 var voltagectx = document.getElementById("voltageChart").getContext('2d');
 var voltageChart = new Chart(voltagectx, {
+    plugins: [ChartDataLabels],
     type: 'line',
     data: {
-        labels: ["", "", "", "", ""],
+        labels: ["", "", "", ""],
         datasets: [
             {
                 label: '',
                 data: [0, 0, 0, 0],
                 fill: false,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderWidth: 1
+                borderColor: 'rgba(122, 126, 194, 1)',
+                backgroundColor: 'rgba(122, 126, 194, 1)',
+                borderWidth: 4
             },
             {
                 label: '',
                 data: [0, 0, 0, 0],
                 fill: false,
-                borderColor: 'rgba(54, 162, 235, 1)',
-                backgroundColor: 'rgba(54, 162, 235, 0.2',
-                borderWidth: 1
+                borderColor: 'rgba(235, 76, 83, 1)',
+                backgroundColor: 'rgba(235, 76, 83, 1)',
+                borderWidth: 4
             }
         ]
     },
     options: {
+        yAxes: [{
+          scaleLabel: {
+            display: false,
+            labelString: 'value',
+          },
+          ticks: {
+            max: 100,
+            min: -100
+          }
+        }],
+        pointStyle: 'line',
+        layout: {
+            padding: {
+                left: 15,
+                right: 15
+            }
+        },
         plugins:{
             legend:{
                 display: false
+            },
+            datalabels:{
+                color: '#26308f',
+                anchor: 'end',
+                align: 'end',
+                display: function(voltagectx){
+                    return (voltagectx.dataIndex === 3);
+                },
+                font:{
+                    size: 15,
+                    family: 'Mulish',
+                    weight: 600,
+                }
             }
         },
         scales: {
             y: {
                 beginAtZero: true,
                 display: false,
-                max: 1000,
+                max: 1200,
                 min: 0,
             },
             x: {

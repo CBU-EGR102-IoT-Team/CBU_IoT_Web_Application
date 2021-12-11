@@ -30,38 +30,61 @@
 
 <body>
  <!--
+ SENSIBLE STYLE GUIDE
+ **FOLLOW IF YOU ADD TO THE HTML/CSS IN ANY WAY**
+ 
+ Ids: Reserved for library and Javascript references. DO NOT USE FOR STYLE.
+ Style Tags: Reserved for height and width attributes only.
+ Classes: Do not create repetative classes. Most styles can be achieved with our simple index.css file.
+ 
  Classes and IDs not defined in index.css (DO NOT DELETE):
-    --Bootstarp: row, col
+    --Bootstarp: row, col, container, flex-nowarp
     --FullPage: fullpage, section
  -->
+    <div id="header" class="navbar" style="width: 100vw;">
+        <div style="width: 33%">
+            
+        </div>
+        <div style="width: 33%">
+            <h3 id="deviceNumberHeader" class="header">BOT - ##</h3>
+        </div>
+        <div class="icon_wrapper" style="width: 33%">
+            <img src="icon.png" alt="Sensible Logo" class="icon" onClick="settings();">
+        </div>
+            
+            
 
+    </div>
 <div id="fullpage">
     <!-- CONNECT TO BOT / LOGIN PAGE -->
     <div id="connect_display" class="section" data-anchor="connect">
-        <div class="container-fluid bg-pan-top page" id="connect_page">
-            <div class="connect_page_welcome">
-                 <h1 class="app-title"> Sensible</h1>
+        <div class="page background_dark">
+            
+            <div style="height: 13vh;">
+                <div class="logo_wrapper">
+                     <img src="logo.png" alt="Sensible Logo" class="logo">
+                </div> 
             </div>
-            <div class="connect_contents">
-                <form>
-                    <div class="form_contents" onsubmit="return false">
-                        <div class="submit-prompt"><p> Please enter your bot ID</p></div>
+            
+            <div style="height: 30vh; width: 100%">
+                <div class="container-fluid transparent_window true_center">
+                    <form class="form-group" onsubmit="return false">
+                        <div class="paragraph align_left"><h6> Please enter your bot ID</h6></div>
                         <input type="text" class="textfield" placeholder= "****###" id="deviceNumber" autocomplete="off" />
-                        <div class="submit-wrapper">
+                        <div class="submit_wrapper">
                             <button class="submit" onClick="getDevice();"><h class="textfield">Connect</h></button>
                         </div>
-                    </div>
-                </form>
-                <p><a href="#" onClick="deviceHelp();" class="bot-help">Need Help?</a></p>
+                    </form>
+                    <h6><a href="#" onClick="deviceHelp();" class="link_dark">Need Help?</a></h6>
+                </div> 
             </div>
         </div>
     </div>
 
     <!-- DATA DISPLAY PAGE-->
     <div id="data_display" class="section" data-anchor="data">
-        <div class="page">
-            <!--<div class="navbar"></div>-->
-            <div class ="margins container">
+        <div class="page background_dark">
+            <div class ="data_widget container">
                 <div class="row" style="height: 17vh;">
                     
                 </div>
@@ -72,7 +95,12 @@
                     <div class="col-auto" style="width: 47%;">
                         <div class="row" style="height: 100%;">
                             <div class="container-fluid window">
-                            
+                                <div class="true_center" style="width: 100%; height: 30%">
+                                    <h5 class="sub_header">Distance</h5>
+                                </div>
+                                <div class="justify_center" style="height: 70%; width: 100%">
+                                    <canvas id="distanceChart" style="width: 80%; height: 80%;"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -83,8 +111,10 @@
                     <!-- Tools and Light Windows (Right Side) -->
                     <div class="col-auto" style="width: 47%;">
                         <div class="row" style="height: 30%;">
-                            <div class="container-fluid window">
-                                
+                            <div class="container-fluid window true_center">
+                                <a id="disconnectDeviceButton" onClick="captureChartData();" style="color: #ff394c;">
+                                    <i class="bi bi-camera-fill fa-3x"></i>
+                                </a>
                             </div>
                         </div>
                         
@@ -92,8 +122,16 @@
                         <div class="row" style="height: 5%;"></div>
                         
                         <div class="row" style="height: 65%;">
+                            
                             <div class="container-fluid window">
-                                
+                                <div class="true_center" style="width: 100%; height: 30%">
+                                    <h5 class="sub_header">Light</h5>
+                                </div>
+                                <h6 id="light_sensor_1" class="align_right data_header">0</h6>
+                                <div class="justify_center" style="height: 70%; width: 100%">
+                                    <canvas id="lightChart" style="width: 60%; height: 60%;"></canvas>
+                                </div>
+                                <h6 id="light_sensor_2" class="align_left data_header">0</h6>
                             </div>
                         </div>
                     </div>
@@ -105,9 +143,14 @@
                 <!-- Voltage -->
                 <div class="row" style="height: 21vh;">
                     <div class="col-auto ignore_padding" style="width: 100%;">
-                        <div class="container-fluid window"> 
-                        
+                        <div class="container-fluid window true_center"> 
+                            <div class="true_center" style="width: 100%; height: 30%">
+                                <h5 class="sub_header">Voltage</h5>
+                            </div>
                             
+                            <div class="justify_center" style="height: 70%; width: 60%">
+                                <canvas id="voltageChart" style="width: 50%; height: 50%;"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -182,34 +225,33 @@
                                     <i class="bi bi-camera-fill"></i>
                                 </a>
                             </div>
-
                         </div>
                     </div>
                     
                     <!-- LIGHT -->
                     <div id="light_window">
                         <div class="window" style="width: 100%; height: 95%; display: flex; flex-direction: column;">
-                                <div class="light_data_header">
-                                    <h6 style="width: 100%;">
-                                        Light
-                                    </h6>
-                                </div>
-                                
-                                <div class="light_data_body">
-                                    <div style="display: flex; flex-direction: row; height: 50%; width: 100%; justify-content: flex-end !important;">
-                                        <div style="height: 30%; width: 50%; text-align: right !important; margin-right: 10%;">
-                                            <h6 id="light_sensor_1" style="color: #26308f !important; font-weight: 600 !important;">0</h6>
-                                        </div>
+                            <div class="light_data_header">
+                                <h6 style="width: 100%;">
+                                    Light
+                                </h6>
+                            </div>
+                            
+                            <div class="light_data_body">
+                                <div style="display: flex; flex-direction: row; height: 50%; width: 100%; justify-content: flex-end !important;">
+                                    <div style="height: 30%; width: 50%; text-align: right !important; margin-right: 10%;">
                                         
-                                        <div style="height: 30%; width: 50%; text-align: left !important; margin-left: 10%;">
-                                            <h6 id="light_sensor_2" style="color: #26308f !important; font-weight: 600 !important;">0</h6>
-                                        </div>
                                     </div>
-                                    <div>
-                                        <canvas id="lightChart" width="90%" height="90%"></canvas>
+                                    
+                                    <div style="height: 30%; width: 50%; text-align: left !important; margin-left: 10%;">
+                                    
                                     </div>
-
                                 </div>
+                                <div>
+                                    <canvas id="lightChart" width="90%" height="90%"></canvas>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -246,7 +288,7 @@
                         <h1 id="voltage_sensor_1">0</h1>
                     </div>
                     <div>
-                        <canvas id="voltageChart" width="95%" height="95%"></canvas>
+                        
                     </div>
                     <div style="width: 30%; display: flex; flex-direction: column; justify-content: flex-end;">
                         <h1 id="voltage_sensor_2">0</h1>
@@ -264,9 +306,10 @@
     
     <!-- CAPTURE DISPLAY PAGE-->
     <div id="capture_display" class="section" data-anchor="captures">
-        <div class="" id="capture_page">
-            <div class="container-fluid" id="data_header">
-                <h3 id="deviceNumberHeader">Bot - ##</h3>
+        <div class="page background_dark" id="">
+            <div class="data_widget" id="capture_page">
+                <!--Spacer Row-->
+                <div style="height: 14.5vh;"></div>
             </div>
         </div>
     </div>
@@ -276,6 +319,7 @@
 <!-- SCRIPTS (Interact directly with our written HTML)-->
 <script type="text/javascript" src="script/charts.js"></script>
 <script type="text/javascript" src="script/capture.js"></script>
+<script type="text/javascript" src="script/connection.js"></script>
 <script type="text/javascript" src="script/devices.js"></script>
 <script type="text/javascript" src="script/displays.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>

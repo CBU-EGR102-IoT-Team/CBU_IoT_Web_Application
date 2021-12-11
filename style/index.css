@@ -6,71 +6,372 @@ FONTS
 /*------------------------------
 IMAGE STYLES
 ------------------------------*/
+.icon_wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icon {
+    max-width:40px; 
+}
+
+.logo_wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 90%;
+    align-self: center;
+    margin-top: 8%;
+}
+
 .logo {
+    max-width: 152px !important; 
+}
+
+/*------------------------------
+WINDOW STYLING
+------------------------------*/
+
+/*Window used by all data windows on the data display page.*/
+.window {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 17px;
+    box-shadow: 2px 5px 10px 0 rgba(0, 0, 0, 0.16);
+    background: #f1f1f1;
+    overflow: hidden;
+}
+
+/*A slightly modified version of the above window class. Does not
+have a background or box shadow.*/
+.transparent_window {
+    width: 100%;
+    display: flex;
+    flex-shrink: 1;
+    flex-direction: column;
+    height: 100%;
+    text-align: left;
+}
+
+.settings_window {
+    width: 95vw !important;
+    height: 95vh !important;
+    border-radius: 30px !important;
+}
+
+/*Basic styling for all popup windows*/
+.popup_window{
+    border-radius: 30px !important;
+}
+
+/*A modified version of the window class used to display
+a users collected captures.*/
+.capture {
+    position: relative;
+    margin: 2.5vh 0;
+    height: 20vh;
     
+    flex-direction: row;
+}
+/*check your discord*/
+.capture_sliver {
+    flex: 1;
+    height: 100%;
+}
+
+.separator {
+    height: 100%;
+    width: 1px;
+    background: #7a7ec2;
+}
+
+/*Applied to windows where content should be centered both horizontally
+and vertically.*/
+.true_center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/*Applied to windows where content should be centered horizontally and
+content should start at the bottom of the bottom of the window.*/
+.justify_center{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
 }
 
 /*------------------------------
 PAGE HIERARCHY STYLES
 ------------------------------*/
+
+/*Used to provide basic styling to each page of the
+application.*/
 .page {
     height: 100vh;
     width: 100vw;
     font-family: 'Mulish';
-    background-image: linear-gradient(to bottom, #1c2471 78%, #ff394c);
     display: grid;
-    place-content: center;
 }
 
-.margins {
+/*The container that holds all data windows.*/
+.data_widget {
     height: 100vh;
     width: min(700px, 90vw);
+    margin: 0 max(5vw, calc(50vw - 350px));
 }
 
+/*The navbar (only visible on the data screen and capture screen)
+provides the user with the bots id and the settings icon.*/
 .navbar{
-    position: sticky;
-    top: 100vh;
+    position: fixed;
+    z-index: 9;
     width: 100%;
-    height: 5vh;
+    height: 50px;
 }
-
-.window {
-    width: 100%;
-    height: 100%;
-    border-radius: 30px;
-    box-shadow: 2px 5px 10px 0 rgba(0, 0, 0, 0.16);
-    background: #f1f1f1;
-}
-
 
 /*------------------------------
 TEXT STYLES
 ------------------------------*/
+
+/*Formats "header" text. (Used by botID)*/
 .header {
-    font-weight: bold;
+    font-weight: 600;
     color: #f1f1f1;
     font-size: max(20px);
     text-align: center;
     width: 100%;
 }
 
+/*Formats "subheader" text. (Used by each of the data types)*/
 .sub_header {
     font-weight: normal;
-    color: #0c108e;
-    font-size: max(20px);
+    color: #0c108e !important;
     text-align: center;
     width: 100%;
 }
 
+/*Formats the "data" text.
+SOMEWHAT DEPRECATED-- Only used by light currently.*/
 .data_header{
-    font-weight: bold;
+    font-weight: 600;
     color: #26308f;
     width: 100%;
+    margin-bottom: 0px !important;
+}
+
+/*Formats the paragraph text.
+Currently only used by the text field prompt on the connect screen.
+*/
+.paragraph{
+   font-weight: 500; 
+   color: #7a7ec2;
+   margin-bottom: -8px;
+}
+
+/*Forces text to be aligned left.*/
+.align_left{
+    text-align: left !important;
+}
+
+/*Forces text to be aligned right.*/
+.align_right{
+    text-align: right !important;
 }
 
 /*------------------------------
-GRID OVERRIDES
+BUTTONS
 ------------------------------*/
+
+/*Used by the submit button*/
+.submit{
+    align-self: center;
+    width: 100%;
+    height: 100%;
+    
+    color: #ecf0f1;
+    background-color: #7a7ec2;
+    border-color: transparent;
+    border-radius: 30px;
+    
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+    text-align: center;
+    font-size: 20px;
+}
+
+/*Used to wrap the submit button and provide a small
+amount of spacing.*/
+.submit_wrapper{
+    margin-top: 14%;
+}
+
+.popup_button{
+    background-color: #7a7ec2 !important;
+    color: #ecf0f1 !important;
+    
+    border-color: transparent !important;
+    border-radius: 30px !important;
+}
+
+.popup_button_alt{
+    background-color: #ff394c !important;
+    color: #ecf0f1 !important;
+    
+    border-color: transparent !important;
+    border-radius: 30px !important;
+}
+
+/*------------------------------
+LIGHT THEME / DARK THEME SPECIFIC
+ITEMS
+
+Since our light and dark theme
+only modifies a select number of
+components they can just be kept
+here.
+------------------------------*/
+
+.link_dark{
+    color: #ecf0f1;
+    text-decoration: none;
+}
+
+.link_light{
+    color: #7a7ec2;
+    text-decoration: none; 
+}
+
+.background_dark{
+    background-image: linear-gradient(to bottom, #1c2471 78%, #ff394c) !important;
+}
+
+.background_light{
+    background-image: linear-gradient(to bottom, #7a7ec2, #f1f1f1) !important;
+}
+
+/*------------------------------
+OVERRIDES
+
+EVERYTHING BELOW THIS SHOULD
+NOT BE MODIFIED!
+------------------------------*/
+
+/*Tells the element to ignore its padding.*/
 .ignore_padding{
     padding: 0px !important;
+}
+
+/*Hides the element from the display.*/
+.hide{
+    display: none !important;
+}
+
+/*Overrides the default HTML styling for
+text fields.*/
+input[type="text"]{
+    width: 100%;
+    outline: none;
+    color: #ECF0F1;
+    background-color: transparent;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: #ff394c;
+    border-bottom-width: 5px;
+    font-size: 20px;
+}
+
+a{
+    font-family: 'Mulish' !important;
+}
+
+/*Overrides default hover effects for links*/
+a:hover .link_dark .link_light{
+    font-family: 'Mulish' !important;
+    text-decoration: none !important;
+    color: #ecf0f1 !important;
+}
+
+/*Overrides default action effects for links*/
+a:action .link_dark .link_light{
+    font-family: 'Mulish' !important;
+    text-decoration: none !important;
+    color: #ecf0f1 !important;
+}
+
+body{
+    font-family: 'Mulish' !important;
+}
+
+/*------------------------------
+Toggle Switches
+------------------------------*/
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 81px;
+  height: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #7a7ec2;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #ccc;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(59px);
+  -ms-transform: translateX(59px);
+  transform: translateX(59px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
