@@ -22,7 +22,7 @@ async function execute_session(connection, argv) {
                     resolve(); 
                 }
             }
-
+            
             await connection.subscribe(argv.topic, mqtt.QoS.AtLeastOnce, on_publish);
 
             for (let op_idx = 0; op_idx < argv.count; ++op_idx) {
