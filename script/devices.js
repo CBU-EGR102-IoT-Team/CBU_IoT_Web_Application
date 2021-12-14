@@ -207,7 +207,7 @@ async function settings(){
                 '<div style="height: 15% !important; width: 100% !important;">' +
                     '<h3 class="data_header align_left">Need Help?</h3>' +
                     '<div class="true_center" style="display: flex; flex-direction: row; width: 100%;">' +
-                        '<p class="sub_header align_left">Contact: devity@calbaptist.edu</p>' +
+                        '<p class="sub_header align_left">Contact: devitia@calbaptist.edu</p>' +
                     '</div>' +
                 '</div>' +
                 
