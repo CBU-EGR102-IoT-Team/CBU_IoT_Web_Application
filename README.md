@@ -21,7 +21,7 @@ An IOT web application used by students at California Baptist University to coll
 		* [Style]( #style)
 		* [Data Visualization](#data-visualization)
 	* Backend
-* Devitia Team
+* [Devitia Team](#devitia-team)
 
 ## About The Course
 
@@ -96,3 +96,8 @@ The plugin is added to the header area of each chart that needs to utilize it (v
     }
     
 To customize the look of the added datalabels you must add the "datalabels" configuration option to the chart ([all text options should work here](https://chartjs-plugin-datalabels.netlify.app/guide/options.html) in addition to some others).
+
+## Backend
+To be written!
+## Devitia Team
+Devitia is a cloud based software development team founded at California Baptist University. Devitia is entirely student lead, and provides software solutions for both internal and external clients. To learn more or to get in touch with us please visit us at our [website](https://www.devitia.net/).
