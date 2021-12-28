@@ -72,7 +72,7 @@ The width of this particular div (in this case the header of the webapp) is defi
       position: fixed;
       z-index: 9;
     }
-The above CSS styles that Div with some basic positioning elements.
+The above CSS styles that set up the Div with some basic positioning elements.
 #### Data Visualization
 To visualize the data sent to the application Chart.js is utilized. However, out of the box it does not support dynamic data labels that move with the data. As a result a plugin ([ChartDataLabels](https://chartjs-plugin-datalabels.netlify.app/)) had to be utilized. 
 
