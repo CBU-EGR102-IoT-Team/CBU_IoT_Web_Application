@@ -221,8 +221,10 @@ async function settings(){
                 '<h6>Hovag Apelian</h6>' +
                 '<h6>Elijah Brown</h6>' +
                 '<h6>Kevin Burga</h6>' +
+                '<h6>Sarah Au</h6>' + 
                 '<h6>Nathan Corso</h6>' +
                 '<h6>Krystal Karman</h6>' +
+                '<h6>Sarah Risma</h6>' +
                 '</div>' +
                 '<div class="col-6 align_left sub_header" style="margin: 0px !important; padding: 0px; flex-direction: flex-start !important; ">' +
                 '<h5>Hardware</h5>' +
@@ -286,8 +288,10 @@ async function settings(){
             '<h6>Hovag Apelian</h6>' +
             '<h6>Elijah Brown</h6>' +
             '<h6>Kevin Burga</h6>' +
+            '<h6>Sarah Au</h6>' + 
             '<h6>Nathan Corso</h6>' +
             '<h6>Krystal Karman</h6>' +
+            '<h6>Sarah Risma</h6>' +
             '</div>' +
             '<div class="col-6 align_left sub_header" style="margin: 0px !important; padding: 0px; flex-direction: flex-start !important; ">' +
             '<h5>Hardware</h5>' +
