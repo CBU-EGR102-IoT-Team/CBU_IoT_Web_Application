@@ -249,8 +249,8 @@ async function generateChartData(){
             }
         })
         
+        updateAllCharts();
         await sleep(1.5);
 
-        updateAllCharts();
     }
 }
