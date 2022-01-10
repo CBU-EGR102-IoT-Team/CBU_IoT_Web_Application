@@ -1,3 +1,5 @@
+let connectedBotID = 0; 
+
 /*
 Gets the device information inputted into the form on the first page.
 
@@ -9,50 +11,48 @@ async function getDevice(){
     input = input.substr(4);
     if(input != "" && parseInt(input) > 0 && parseInt(input) <= 30 && !(isNaN(input))){
 
-        // TODO Implement backend form validation and IoT device connection
-
-        let targetedDisplay = document.getElementById("deviceNumberHeader");
-
-        if(input <= 9){
-            let inputString = '00' + parseInt(input, 10);
-            targetedDisplay.innerHTML = "BOT -  " + inputString;
-        }else if(input <= 99){
-            let inputString = '0' + parseInt(input, 10);
-            targetedDisplay.innerHTML = "BOT - " + inputString;
-        }else{
-            targetedDisplay.innerHTML = "BOT - " + parseInt(input, 10);
-        }
-
-        // Firing off the toast for the user to see.
-        Swal.fire({
-          customClass: {
-          popup: 'popup_window'
-          },
-          title: '<h3 class="data_header">SUCCESS!</h3>',
-          html:
-            '<div style="width: 100%; height: 100%;" class="true_center">' +
-            '<lottie-player src="https://assets9.lottiefiles.com/packages/lf20_irpov3s6.json" style="height: 70%; width: 70%;" background="transparent" speed="1" loop autoplay></lottie-player>' +
-            '<div>',
-          showConfirmButton: false,
-          timer: 2500,
-          confirmButtonText:
-            '<i class="fa fa-thumbs-up"></i> Great!',
-          confirmButtonAriaLabel: 'Thumbs up, great!',
-          cancelButtonText:
-            '<i class="fa fa-thumbs-down"></i>',
-          cancelButtonAriaLabel: 'Thumbs down'
+        $.ajax({
+            type: 'GET',
+            url: "https://qm6z7raeic.execute-api.us-west-1.amazonaws.com/prod?botId="+input,
+            
+            success: function(data){
+                let targetedDisplay = document.getElementById("deviceNumberHeader");
+                
+                if(input <= 9){
+                    let inputString = '00' + parseInt(input, 10);
+                    targetedDisplay.innerHTML = "BOT -  " + inputString;
+                }else if(input <= 99){
+                    let inputString = '0' + parseInt(input, 10);
+                    targetedDisplay.innerHTML = "BOT - " + inputString;
+                }else{
+                    targetedDisplay.innerHTML = "BOT - " + parseInt(input, 10);
+                }
+                
+                // Firing off the toast for the user to see.
+                Swal.fire({
+                  customClass: {
+                  popup: 'popup_window'
+                  },
+                  title: '<h3 class="data_header">SUCCESS!</h3>',
+                  html:
+                    '<div style="width: 100%; height: 100%;" class="true_center">' +
+                    '<lottie-player src="https://assets9.lottiefiles.com/packages/lf20_irpov3s6.json" style="height: 70%; width: 70%;" background="transparent" speed="1" loop autoplay></lottie-player>' +
+                    '<div>',
+                  showConfirmButton: false,
+                  timer: 2500,
+                  confirmButtonText:
+                    '<i class="fa fa-thumbs-up"></i> Great!',
+                  confirmButtonAriaLabel: 'Thumbs up, great!',
+                  cancelButtonText:
+                    '<i class="fa fa-thumbs-down"></i>',
+                  cancelButtonAriaLabel: 'Thumbs down'
+                })
+                
+                connectionMade(input);
+            }
+            
         })
-
-        onTransitionPage();
-        await sleep(1.8);
-        fullpages.moveSectionDown();
-        onMiddlePage();
-        let header = document.getElementById("header");
-        header.classList.remove("hide");
-        await sleep(1.0);
-        if(allowDataGeneration === false){
-            generateChartData();
-        }
+    
 
     }
     // Error Handling
@@ -118,6 +118,7 @@ Used to disconnect from the current datastream and return to the original device
 connection page.
 */
 async function destroyDevice(){
+    connectedBotID = 0;
     let input = document.getElementById("deviceNumber");
     input.value = "BOT-";
     let targetedDisplay = document.getElementById("deviceNumberHeader");
@@ -216,11 +217,11 @@ async function settings(){
                 '<div class="" style="display: flex; flex-direction: row; width: 100%;">' +
                 '<div class="col-6 align_left sub_header" style="margin: 0px !important; padding: 0px;">' +
                 '<h5>Software</h5>' +
-                '<h6>Kaleb Coggins</h6>' +
                 '<h6>Jake Speyer</h6>' +
                 '<h6>Hovag Apelian</h6>' +
-                '<h6>Elijah Brown</h6>' +
+                '<h6>Kaleb Coggins</h6>' +
                 '<h6>Kevin Burga</h6>' +
+                '<h6>Elijah Brown</h6>' +
                 '<h6>Sarah Au</h6>' + 
                 '<h6>Nathan Corso</h6>' +
                 '<h6>Krystal Karman</h6>' +
@@ -283,11 +284,11 @@ async function settings(){
             '<div class="" style="display: flex; flex-direction: row; width: 100%;">' +
             '<div class="col-6 align_left sub_header" style="margin: 0px !important; padding: 0px;">' +
             '<h5>Software</h5>' +
-            '<h6>Kaleb Coggins</h6>' +
             '<h6>Jake Speyer</h6>' +
             '<h6>Hovag Apelian</h6>' +
-            '<h6>Elijah Brown</h6>' +
+            '<h6>Kaleb Coggins</h6>' +
             '<h6>Kevin Burga</h6>' +
+            '<h6>Elijah Brown</h6>' +
             '<h6>Sarah Au</h6>' + 
             '<h6>Nathan Corso</h6>' +
             '<h6>Krystal Karman</h6>' +
@@ -326,7 +327,19 @@ function toggleTheme(){
             backgrounds[i].classList.add("background_light");
             backgrounds[i].classList.remove("background_dark");
         }
+        
+        let navbar = document.getElementById("header");
+        navbar.classList.add("navbar_light");
+        navbar.classList.remove("navbar_dark");
         theme = "light";
+        
+        let pageBackground = document.getElementById("background");
+        pageBackground.classList.add("background_light");
+        pageBackground.classList.remove("background_dark");
+        
+        let capturePage = document.getElementById("capture_display");
+        capturePage.classList.add("background_light");
+        capturePage.classList.remove("background_dark");
     }
     else if(theme === "light"){
         let links = document.getElementsByClassName("link_light");
@@ -340,7 +353,33 @@ function toggleTheme(){
             backgrounds[i].classList.add("background_dark");
             backgrounds[i].classList.remove("background_light");
         }
-        console.log("Made It But In Another Color" + theme);
+        
+        let navbar = document.getElementById("header");
+        navbar.classList.add("navbar_dark");
+        navbar.classList.remove("navbar_light");
+
+        let pageBackground = document.getElementById("background");
+        pageBackground.classList.add("background_dark");
+        pageBackground.classList.remove("background_light");
+        
+        let capturePage = document.getElementById("capture_display");
+        capturePage.classList.add("background_dark");
+        capturePage.classList.remove("background_light");
+        
         theme = "dark";
+    }
+}
+
+async function connectionMade(input){
+    connectedBotID = input;
+    onTransitionPage();
+    await sleep(1.8);
+    fullpages.moveSectionDown();
+    onMiddlePage();
+    let header = document.getElementById("header");
+    header.classList.remove("hidden");
+    await sleep(1.0);
+    if(allowDataGeneration === false){
+            generateChartData();
     }
 }

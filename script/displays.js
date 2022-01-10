@@ -18,15 +18,16 @@ Also adds some cool animations when loading in the new page.
 let fullpages = new fullpage('#fullpage', {
     licenseKey: 'E3EEB2F7-135F45D4-B3672D06-FA885484',
     autoScrolling:true,
-    scrollOverflow: true,
+    scrollOverflow:true,
 
     onLeave: function(origin, destination, direction){
         let leavingSection = this;
-
+        console.log(leavingSection);
         if(destination.index == 1 && direction == 'down' && pendingCapture == true){
             pendingCapture = true;
             togglePendingCaptureOff();
             fullpage_api.reBuild();
+            console.log("Rebuilt!");
         }
     }
 });
@@ -56,7 +57,7 @@ function onTopPage(){
     blockScrolling.classList.remove("fp-section");
     
     let header = document.getElementById("header");
-    header.classList.add("hide");
+    header.classList.add("hidden");
 }
 
 /*Enables scrolling to the middle page from the top page.

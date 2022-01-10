@@ -28,7 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.0.2/cleave.min.js" integrity="sha512-SvgzybymTn9KvnNGu0HxXiGoNeOi0TTK7viiG0EGn2Qbeu/NFi3JdWrJs2JHiGA1Lph+dxiDv5F9gDlcgBzjfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body>
+<body id="background" class="background_dark">
  <!--
  SENSIBLE STYLE GUIDE
  **FOLLOW IF YOU ADD TO THE HTML/CSS IN ANY WAY**
@@ -41,17 +41,22 @@
     --Bootstarp: row, col, container, flex-nowarp
     --FullPage: fullpage, section
  -->
-    <div id="header" class="navbar" style="width: 100vw;">
-        <div style="width: 33%">
-            
-        </div>
-        <div style="width: 33%">
-            <h3 id="deviceNumberHeader" class="header">BOT - ##</h3>
-        </div>
-        <div class="icon_wrapper" style="width: 33%">
-            <img src="icon.png" alt="Sensible Logo" class="icon" onClick="settings();">
-        </div>
+<div id="header" class="navbar navbar_dark" style="width: 100vw;">
+    <div style="width: 33%">
+        
     </div>
+    <div style="width: 33%">
+        <h3 id="deviceNumberHeader" class="header">BOT - ##</h3>
+    </div>
+    <div class="icon_wrapper" style="width: 33%">
+        <img src="icon.png" alt="Sensible Logo" class="icon" onClick="settings();">
+    </div>
+</div>
+
+<div id ="flash" class="hidden animation">
+    
+</div>
+ 
 <div id="fullpage">
     <!-- CONNECT TO BOT / LOGIN PAGE -->
     <div id="connect_display" class="section" data-anchor="connect">
@@ -121,14 +126,14 @@
                         <div class="row" style="height: 65%;">
                             
                             <div class="container-fluid window">
-                                <div class="true_center" style="width: 100%; height: 30%">
+                                <div class="justify_center" style="width: 100%; height: 30%">
                                     <h5 class="sub_header">Light</h5>
                                 </div>
-                                <h6 id="light_sensor_1" class="align_right data_header">0</h6>
+                                <h6 id="light_sensor_1" class="align_right data_header sensorB_header">0</h6>
                                 <div class="justify_center" style="height: 70%; width: 100%">
                                     <canvas id="lightChart" style="width: 60%; height: 60%;"></canvas>
                                 </div>
-                                <h6 id="light_sensor_2" class="align_left data_header">0</h6>
+                                <h6 id="light_sensor_2" class="align_left data_header sensorA_header">0</h6>
                             </div>
                         </div>
                     </div>
@@ -140,20 +145,32 @@
                 <!-- Voltage -->
                 <div class="row" style="height: 21vh;">
                     <div class="col-auto ignore_padding" style="width: 100%;">
-                        <div class="container-fluid window true_center"> 
-                            <div class="true_center" style="width: 100%; height: 30%">
-                                <h5 class="sub_header">Voltage</h5>
+                        <div class="container-fluid window horizontal_window">
+                            <div class="true_center" style="width: 25%; height: 100%;">
+                                <h1 id="voltage_sensor_1" class="data_subheader sensorA_header">0</h1>
                             </div>
                             
-                            <div class="justify_center" style="height: 70%; width: 60%">
-                                <canvas id="voltageChart" style="width: 50%; height: 50%;"></canvas>
+                            <div class="true_center" style="width: 50%; height: 100%;">
+                                <div class="true_center" style="width: 100%; height: 30%">
+                                    <h5 class="sub_header">Voltage</h5>
+                                </div>
+                                <div class="justify_center" style="height: 70%; width: 100%">
+                                    <canvas id="voltageChart" style="width: 100%; height: 50%;"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="true_center" style="width: 25%; height: 100%">
+                                <h1 id="voltage_sensor_2" class="data_subheader sensorB_header">0</h1>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="row" style="height: 19vh;">
-                    
+                        
+                <div id="new_capture_animation" class="data_footer_notification hidden">
+                    <div class="row" style="height: 19vh;">
+                        <!--<lottie-player src="https://assets10.lottiefiles.com/packages/lf20_h01ycwle.json"  background="transparent"  speed="1"  style="width: 100vw; height: 10vh; margin-left: auto; margin-right: auto; margin-top:8%"  loop  autoplay></lottie-player>-->
+                        <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_aql2ch8v.json"  background="transparent"  speed="1"  style="width: 100% !important; height: 100% !important; margin-top: 8%"  loop  autoplay></lottie-player>
+                    </div>
                 </div>
             </div>
         </div>
@@ -161,10 +178,19 @@
     </div>
 
     
+
+    
+    <!-- CAPTURE DISPLAY PAGE-->
+    <div id="capture_display" class="section background_dark" data-anchor="captures" style="display: flex; justify-content: flex-start; flex-direction: column;">
+            <div id="capture_page" class="true_center">
+                <!--Spacer Row-->
+                <div style="height: 8vh;"></div>
+            </div>
+    </div>
     
     
     <!-- To be deleted after rewrite -->
-    <div style="display: none;">
+    <div class="hidden">
                 
         <!-- THE ENTIRE DATA DISPLAY PAGE IS CONTAINED WITHIN THIS DIV.
              ALL GLOBAL FORMATING SHOULD BE DONE TO THIS TAG ONLY!      -->
@@ -282,13 +308,13 @@
                 </div>
                 <div class="voltage_data_body">
                     <div style="width: 30%; display: flex; flex-direction: column; justify-content: flex-start;">
-                        <h1 id="voltage_sensor_1">0</h1>
+                        
                     </div>
                     <div>
                         
                     </div>
                     <div style="width: 30%; display: flex; flex-direction: column; justify-content: flex-end;">
-                        <h1 id="voltage_sensor_2">0</h1>
+                        
                     </div>
                 </div>
             </div>
@@ -299,28 +325,16 @@
         </div>
     </div>
 
-
-    
-    <!-- CAPTURE DISPLAY PAGE-->
-    <div id="capture_display" class="section" data-anchor="captures">
-        <div class="page background_dark" id="">
-            <div class="data_widget" id="capture_page">
-                <!--Spacer Row-->
-                <div style="height: 14.5vh;"></div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 <!-- SCRIPTS (Interact directly with our written HTML)-->
-<script type="text/javascript" src="script/charts.js"></script>
-<script type="text/javascript" src="script/capture.js"></script>
-<script type="text/javascript" src="script/connection.js"></script>
 <script type="text/javascript" src="script/devices.js"></script>
+<script type="text/javascript" src="script/charts.js"></script>
+<script type="text/javascript" src="script/connection.js"></script>
 <script type="text/javascript" src="script/displays.js"></script>
+<script type="text/javascript" src="script/capture.js"></script>
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>

@@ -61,6 +61,12 @@ have a background or box shadow.*/
     border-radius: 30px !important;
 }
 
+.horizontal_window {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+
 /*Basic styling for all popup windows*/
 .popup_window{
     border-radius: 30px !important;
@@ -71,19 +77,20 @@ a users collected captures.*/
 .capture {
     position: relative;
     margin: 2.5vh 0;
-    height: 20vh;
-    
+    height: 23vh;
+    width: 90% !important;
     flex-direction: row;
 }
-/*check your discord*/
+
 .capture_sliver {
     flex: 1;
     height: 100%;
+    max-height: 100%;
 }
 
 .separator {
     height: 100%;
-    width: 1px;
+    min-width: 1px;
     background: #7a7ec2;
 }
 
@@ -164,6 +171,16 @@ SOMEWHAT DEPRECATED-- Only used by light currently.*/
     margin-bottom: 0px !important;
 }
 
+.sensorA_header{
+    font-weight: 600 !important;
+    color: #7A7EC2 !important;
+}
+
+.sensorB_header{
+    font-weight: 600 !important;
+    color: #EB4C53 !important;
+}
+
 /*Formats the paragraph text.
 Currently only used by the text field prompt on the connect screen.
 */
@@ -228,8 +245,7 @@ amount of spacing.*/
 }
 
 /*------------------------------
-LIGHT THEME / DARK THEME SPECIFIC
-ITEMS
+AESTHETICS (ANIMATIONS/ THEMES)
 
 Since our light and dark theme
 only modifies a select number of
@@ -255,6 +271,14 @@ here.
     background-image: linear-gradient(to bottom, #7a7ec2, #f1f1f1) !important;
 }
 
+.navbar_dark{
+    background-color: #1c2471 !important;
+}
+
+.navbar_light{
+    background-color: #8185c5 !important;
+}
+
 /*------------------------------
 OVERRIDES
 
@@ -268,7 +292,7 @@ NOT BE MODIFIED!
 }
 
 /*Hides the element from the display.*/
-.hide{
+.hidden{
     display: none !important;
 }
 
@@ -374,4 +398,68 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.disabled{
+    display: none;
+}
+
+/*Capture Animation*/
+.animation {
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+}
+
+.bar_left{
+    position: absolute;
+    height: 0vh;
+    width: 0vw;
+    bottom: 100%;
+}
+
+.bar_right{
+    position: absolute; 
+    height: 0vh;
+    width: 0vw;
+    right: 100%;
+}
+
+.bar_top{
+    position: absolute;
+    height: 0vh;
+    width: 0vw;
+}
+
+.bar_bottom{
+    position: absolute; 
+    height: 0vh;
+    width: 0vw;
+    bottom: 100%;
+    right: 100%;
+}
+
+.animate, .bar_left{
+    height: 100% !important;;
+    width: 10px;
+    background-color: white;
+}
+
+.animate, .bar_right{
+    height: 100% !important;;
+    width: 10px;
+    background-color: white;
+}
+
+.animate, .bar_top{
+    height: 5px !important;
+    width: 100%;
+    background-color: white;
+}
+
+.animate, .bar_bottom{
+    height: 10px !important;;
+    width: 100%;
+    background-color: white;
 }

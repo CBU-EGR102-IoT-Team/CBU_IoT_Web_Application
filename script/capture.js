@@ -13,6 +13,7 @@ let pendingCapture = false;
 
 */
 function captureChartData(){
+    captureAnimation();
     let lightSensor1 = document.getElementById("light_sensor_1").innerHTML;
     let lightSensor2 = document.getElementById("light_sensor_2").innerHTML;
     let distanceSensor1 = document.getElementById("distance_sensor_1").innerHTML;
@@ -24,6 +25,14 @@ function captureChartData(){
 
     onBottomPages();
     togglePendingCaptureOn();
+}
+
+async function captureAnimation(){
+    let captureAnimationDiv = document.getElementById("flash");
+    captureAnimationDiv.classList.remove("disabled");
+
+    await sleep(5);
+    captureAnimationDiv.classList.add("disabled");
 }
 
 /*
@@ -43,9 +52,9 @@ function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, dis
     newCapture.classList.add("window");
     newCapture.classList.add("capture");
     
-    let cloneChart = (chart, newLoc) => new Chart(
+    let cloneChart = (chart, newLoc, labels) => new Chart(
        newLoc, {
-        plugins: [ChartDataLabels],
+        plugins: [labels && ChartDataLabels],
         type: chart.config.type,
         data: chart.config.data, 
         options:chart.config.options
@@ -57,13 +66,17 @@ function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, dis
     distanceSliver.innerHTML = 
         "<div class=\"distance_data_header\" style=\"width: 100%; text-align: center\"><h5 class=\"sub_header\" style=\"height: 20%\">Distance</h5></div>";
     
-    let distanceCapture = document.createElement('canvas');
-    distanceCapture.id = `c${captureCount}-d`;
-    distanceCapture.style.height = '16vh';
-    distanceSliver.appendChild(distanceCapture);
-    newCapture.appendChild(distanceSliver);
+    let distanceCaptureCanvas = document.createElement('canvas');
+    distanceCaptureCanvas.id = `c${captureCount}-d`;
     
-    cloneChart(distanceChart, distanceCapture.getContext('2d'));
+    let distanceCaptureContainer = document.createElement('div');
+    distanceCaptureContainer.style.height = '19vh';
+    distanceCaptureContainer.style.width = '30vw';
+    distanceCaptureContainer.style.padding = '2vw';
+    
+    distanceCaptureContainer.appendChild(distanceCaptureCanvas);
+    distanceSliver.appendChild(distanceCaptureContainer);
+    newCapture.appendChild(distanceSliver);
     
     // Separator
     let sep = document.createElement('div');
@@ -76,13 +89,27 @@ function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, dis
     lightSliver.innerHTML = 
         "<div class=\"light_data_header\" style=\"width: 100%; text-align: center\"><h5 class=\"sub_header\" style=\"height: 20%\">Light</h5></div>";
     
-    let lightCapture = document.createElement('canvas');
-    lightCapture.id = `c${captureCount}-l`;
-    lightCapture.style.height = '16vh';
-    lightSliver.appendChild(lightCapture);
-    newCapture.appendChild(lightSliver);
+    let lightCaptureCanvas = document.createElement('canvas');
+    lightCaptureCanvas.id = `c${captureCount}-l`;
     
-    cloneChart(lightChart, lightCapture.getContext('2d'));
+    let lightCaptureContainer = document.createElement('div');
+    lightCaptureContainer.style.height = '12vh';
+    lightCaptureContainer.style.width = '30vw';
+    lightCaptureContainer.style.padding = '2vw';
+    
+    lightCaptureContainer.appendChild(lightCaptureCanvas);
+    
+    let ls1 = document.getElementById('light_sensor_1').cloneNode(true);
+    ls1.style.paddingRight = '5px';
+    lightSliver.appendChild(ls1);
+    
+    lightSliver.appendChild(lightCaptureContainer);
+    
+    let ls2 = document.getElementById('light_sensor_2').cloneNode(true);
+    ls2.style.paddingLeft = '5px';
+    lightSliver.appendChild(ls2);
+    
+    newCapture.appendChild(lightSliver);
     
     // Separator
     sep = document.createElement('div');
@@ -95,16 +122,25 @@ function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, dis
     voltageSliver.innerHTML = 
         "<div class=\"voltage_data_header\" style=\"width: 100%; text-align: center\"><h5 class=\"sub_header\" style=\"height: 20%\">Voltage</h5></div>";
     
-    let voltageCapture = document.createElement('canvas');
-    voltageCapture.id = `c${captureCount}-v`;
-    voltageCapture.style.height = '16vh';
-    voltageSliver.appendChild(voltageCapture);
-    newCapture.appendChild(voltageSliver);
+    let voltageCaptureCanvas = document.createElement('canvas');
+    voltageCaptureCanvas.id = `c${captureCount}-v`;
     
-    cloneChart(voltageChart, voltageCapture.getContext('2d'));
+    let voltageCaptureContainer = document.createElement('div');
+    voltageCaptureContainer.style.height = '19vh';
+    voltageCaptureContainer.style.width = '30vw';
+    voltageCaptureContainer.style.padding = '2vw';
+    
+    voltageCaptureContainer.appendChild(voltageCaptureCanvas);
+    voltageSliver.appendChild(voltageCaptureContainer);
+    newCapture.appendChild(voltageSliver);
 
     let capturePage = document.getElementById("capture_page");
+    capturePage.style.overflow = 'visible';
     capturePage.appendChild(newCapture);
+    
+    cloneChart(distanceChart, document.getElementById(`c${captureCount}-d`).getContext('2d'), true);
+    cloneChart(lightChart, document.getElementById(`c${captureCount}-l`).getContext('2d'), false);
+    cloneChart(voltageChart, document.getElementById(`c${captureCount}-v`).getContext('2d'), true);
 }
 
 /*

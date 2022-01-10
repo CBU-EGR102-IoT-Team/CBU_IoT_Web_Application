@@ -16,12 +16,12 @@ const lightChart = new Chart(lightctx, {
             label: '',
             data: [0, 0],
             backgroundColor: [
-                'rgba(122, 126, 194, 1)',
-                'rgba(235, 76, 83, 1)'
+                'rgba(235, 76, 83, 1)',
+                'rgba(122, 126, 194, 1)'
             ],
             borderColor: [
-                'rgba(122, 126, 194, 1)',
-                'rgba(235, 76, 83, 1)'
+                'rgba(235, 76, 83, 1)',
+                'rgba(122, 126, 194, 1)'
             ],
             borderWidth: 1
         }]
@@ -169,7 +169,7 @@ var voltageChart = new Chart(voltagectx, {
             y: {
                 beginAtZero: true,
                 display: false,
-                max: 1200,
+                max: 35,
                 min: 0,
             },
             x: {
@@ -224,24 +224,33 @@ function toggleDataGeneration(){
 // when we set up the data collection.
 async function generateChartData(){
     toggleDataGeneration();
+    let lightSensorA = document.getElementById("light_sensor_1");
+    let lightSensorB = document.getElementById("light_sensor_2");
+    let distanceSensorA = document.getElementById("distance_sensor_1");
+    let distanceSensorB = document.getElementById("distance_sensor_2");
+    let voltageSensorA = document.getElementById("voltage_sensor_1");
+    let voltageSensorB = document.getElementById("voltage_sensor_2");
+    
     while(allowDataGeneration == true){
-        let lightSensor = document.getElementById("light_sensor_1");
-        lightSensor.innerHTML = Math.floor(Math.random() * (1000 - 1) + 1);
-        lightSensor = document.getElementById("light_sensor_2");
-        lightSensor.innerHTML = Math.floor(Math.random() * (1000 - 1) + 1);
-
-        let distanceSensor = document.getElementById("distance_sensor_1");
-        distanceSensor.innerHTML = Math.floor(Math.random() * (100 - 1) + 1);
-        distanceSensor = document.getElementById("distance_sensor_2");
-        distanceSensor.innerHTML = Math.floor(Math.random() * (100 - 1) + 1);
-
-        let voltageSensor = document.getElementById("voltage_sensor_1");
-        voltageSensor.innerHTML = Math.floor(Math.random() * (1000 - 1) + 1);
-        voltageSensor = document.getElementById("voltage_sensor_2");
-        voltageSensor.innerHTML = Math.floor(Math.random() * (1000 - 1) + 1);
+        $.ajax({
+            type: 'GET',
+            url: "https://qm6z7raeic.execute-api.us-west-1.amazonaws.com/prod?botId="+connectedBotID,
+            async: false,
+            success: function(data){
+                let statusCode = data["statusCode"];
+                if(statusCode === 200){
+                    lightSensorA.innerHTML = data["data"]["lightA"];
+                    lightSensorB.innerHTML = data["data"]["lightB"];
+                    distanceSensorA.innerHTML = data["data"]["distanceA"];
+                    distanceSensorB.innerHTML = data["data"]["distanceB"];
+                    voltageSensorA.innerHTML = data["data"]["voltageA"];
+                    voltageSensorB.innerHTML = data["data"]["voltageB"];
+                }
+            }
+        })
+        
+        await sleep(1.5);
 
         updateAllCharts();
-
-        await sleep(2);
     }
 }
