@@ -123,7 +123,6 @@ application.*/
     width: 100vw;
     font-family: 'Mulish';
     display: grid;
-    overflow: hidden;
 }
 
 /*The container that holds all data windows.*/
