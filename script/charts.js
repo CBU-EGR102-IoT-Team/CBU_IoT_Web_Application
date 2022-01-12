@@ -7,8 +7,8 @@ We are utilizing the Chart.js library to create and dynamically update the graph
 // --------------------------------
 // Light sensor chart.js definition
 // --------------------------------
-const lightctx = document.getElementById('lightChart').getContext('2d');
-const lightChart = new Chart(lightctx, {
+let lightctx = document.getElementById('lightChart').getContext('2d');
+let lightChart = new Chart(lightctx, {
     type: 'doughnut',
     data: {
         labels: ['OK', 'WARNING'],
@@ -49,8 +49,8 @@ const lightChart = new Chart(lightctx, {
 // --------------------------------
 // Distance sensor chart.js definition
 // --------------------------------
-const distancectx = document.getElementById('distanceChart').getContext('2d');
-const distanceChart = new Chart(distancectx, {
+let distancectx = document.getElementById('distanceChart').getContext('2d');
+let distanceChart = new Chart(distancectx, {
     plugins: [ChartDataLabels],
     type: 'bar',
     data: {
@@ -104,8 +104,8 @@ const distanceChart = new Chart(distancectx, {
 // --------------------------------
 // Voltage sensor chart.js definition
 // --------------------------------
-var voltagectx = document.getElementById("voltageChart").getContext('2d');
-var voltageChart = new Chart(voltagectx, {
+let voltagectx = document.getElementById("voltageChart").getContext('2d');
+let voltageChart = new Chart(voltagectx, {
     plugins: [ChartDataLabels],
     type: 'line',
     data: {
@@ -220,8 +220,7 @@ function toggleDataGeneration(){
     allowDataGeneration = !allowDataGeneration;
 }
 
-// Tempory method used to generate random data for the sensors. This method will be updated in the future
-// when we set up the data collection.
+// Reads data from the database every 1.5 seconds and updates the charts accordingly.
 async function generateChartData(){
     toggleDataGeneration();
     let lightSensorA = document.getElementById("light_sensor_1");

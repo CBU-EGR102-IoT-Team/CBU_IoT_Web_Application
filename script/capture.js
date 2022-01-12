@@ -41,7 +41,6 @@ Generates the capture card using various html elements.
 I know this is messy, but in order to have the correct CSS styling I believe this is the
 only way to do it.
 
-TODO: Add charts to each card.
 */
 function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, distanceSensor2, voltageSensor1, voltageSensor2){
     captureCount = captureCount + 1;
