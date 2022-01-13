@@ -220,7 +220,7 @@ function toggleDataGeneration(){
     allowDataGeneration = !allowDataGeneration;
 }
 
-// Reads data from the database every 1.5 seconds and updates the charts accordingly.
+// Reads data from the database every 1.5 seconds and updates the charts accordingly
 async function generateChartData(){
     toggleDataGeneration();
     let lightSensorA = document.getElementById("light_sensor_1");
@@ -249,7 +249,7 @@ async function generateChartData(){
         })
         
         updateAllCharts();
-        await sleep(1.5);
+        await sleep(0.5);
 
     }
 }

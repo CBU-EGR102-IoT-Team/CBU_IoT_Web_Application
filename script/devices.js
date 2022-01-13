@@ -376,6 +376,7 @@ async function connectionMade(input){
     await sleep(1.8);
     fullpages.moveSectionDown();
     onMiddlePage();
+    onBottomPages();
     let header = document.getElementById("header");
     header.classList.remove("hidden");
     await sleep(1.0);
