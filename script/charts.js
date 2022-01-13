@@ -249,7 +249,7 @@ async function generateChartData(){
         })
         
         updateAllCharts();
-        await sleep(0.5);
+        await sleep(0.1);
 
     }
 }
