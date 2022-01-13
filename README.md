@@ -33,8 +33,8 @@ An IOT web application used by students at California Baptist University to coll
 ## About The Course
 
 Sensible was designed for the semester long EGR 102 course taught at California Baptist University.<br>
-The course serves as an introduction to fundamental techniques used in engineering design and analysis. Different models of the design process will be examined. A collaborative team oriented design project will be undertaken.<br>
-The final project of the course is a robotics competition. The goal of the teams competiting is to assemble robots to scan various sensors on a map which indicates the amount of ping pong balls that should be collected. Those ping pong balls would then be deposited in a scoring bin (see diagram below).
+The course serves as an introduction to fundamental techniques used in engineering design and analysis. Different models of the design process will be examined. A collaborative team-oriented design project will be undertaken.<br>
+The final project of the course is a robotics competition. The goal of the teams competing is to assemble robots to scan various sensors on a map which indicates the amount of ping pong balls that should be collected. Those ping pong balls would then be deposited in a scoring bin (see diagram below).
 <br>
 <p  align="center">
 <img  width="650"  src="https://i.imgur.com/8sdGXuw.png "  alt="Robotics competition arena diagram.">
@@ -45,7 +45,7 @@ Until the introduction of Sensible students would connect their robots to a loca
 Sensible was developed to replace the outdated version of reading in the data of the sensors which was done through Google Sheets. The goal of Sensible is to deliver a more reliable, fast, and user-friendly interface for the EGR102 students to read the sensor data during the competition. The webapp is optimized to work on any mobile phone or desktop, whichever is more convenient for the students.
 
 ## Usage
-To begin using Sensible users must first complete the construction of their robot. Then using the robots fixed ID (supplied by the institution) they can connect to their bot with the application (used below).
+To begin using Sensible users must first complete the construction of their robot. Then using the robots fixed ID (supplied by the institution) they can connect to their bot with the application (below).
 <p  align="center">
 <img  width="650"  src="https://i.imgur.com/U5ZGvvp.png "  alt="The homescreen for the sensible application.">
 </p>
@@ -132,7 +132,7 @@ To foward the data collected by IoT Core to anywhere else in AWS, an IoT rule mu
 </p>
 
 #### Lambda
-Two different Lambda Functions were written to preform two different crucial tasks: Obtaining data from IoT Core and inserting it into a DynamoDB database (Bot-Data-Handler) as well as retrieving data from the database on demand based on an API Gateway Call (Bot-Database-Handler). <br><br>
+Two different Lambda Functions were written to perform two different crucial tasks: Obtaining data from IoT Core and inserting it into a DynamoDB database (Bot-Data-Handler) as well as retrieving data from the database on demand based on an API Gateway Call (Bot-Database-Handler). <br><br>
 ***Bot-Data-Handler***<br>
 The Bot-Data-Handler function is written in Node.js 14.x and was assigned an execution role on creation that allows it to interact with DynamoDB and API Gateway (one universal execution role was created for both functions even though this one only needed access to the DynamoDB database).
 <p  align="center">
@@ -231,7 +231,7 @@ The Bot-Database Handler is responsible for retrieving the correct sensor values
              }
          return response
 
-Again, this may seem like a complex Python script, but when it is broken down it is straight forward. The most important lines in the entire script example above are the below import statements. Boto3 is the AWS-sdk for Python, and will be used to connect the Lambda function to other AWS infastructure. The below code snippet (from line 4 in the example above) decalres what service we are attempting to connect to (which is DynamoDB). 
+Again, this may seem like a complex Python script, but when it is broken down it is straight forward. The most important lines in the entire script are the import statements (below). Boto3 is the AWS-sdk for Python, and will be used to connect the Lambda function to other AWS infastructure. The below code snippet (from line 4 in the example above) declares what service we are attempting to connect to (which is DynamoDB). 
 
     client = boto3.client('dynamodb')
 Within the function declared underneath this statement, we then attempt to grab a primary key from our database and get the data associated with it. Since the primary key is of type "numeric" the 'N' is used when defining our key in the code (if the key was of type String for example it would be an 'S' instead).
