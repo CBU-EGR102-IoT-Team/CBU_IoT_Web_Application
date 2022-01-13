@@ -133,7 +133,7 @@ To foward the data collected by IoT Core to anywhere else in AWS, an IoT rule mu
 
 #### Lambda
 Two different Lambda Functions were written to preform two different crucial tasks: Obtaining data from IoT Core and inserting it into a DynamoDB database (Bot-Data-Handler) as well as retrieving data from the database on demand based on an API Gateway Call (Bot-Database-Handler). <br><br>
-***Bot-Data-Handler***<br>
+***Bot Data Handler***<br>
 The Bot-Data-Handler function is written in Node.js 14.x and was assigned an execution role on creation that allows it to interact with DynamoDB and API Gateway (one universal execution role was created for both functions even though this one only needed access to the DynamoDB database).
 <p  align="center">
 <img  width="650"  src="https://i.imgur.com/KgVBJT7.png"  alt="Giving Lambda a role">
@@ -192,7 +192,7 @@ Once that has been defined the item can then be inserted into the database with 
             }
         })
 <br>
-***Bot-Database-Handler***<br>
+***Bot Database Handler***<br>
 The Bot-Database Handler is responsible for retrieving the correct sensor values from the DynamoDB database when it recieves an API call from Sensible. Unlike the Bot-Data-Handler, this function is written in Python 3.9 (for no other reason than documentation with viable Node.js examples could not be found). 
 
     import json
@@ -265,10 +265,10 @@ API Gateway is the “middle-man” between the frontend and the backend. Specif
 On the API Gateway dashboard, click on “create API” then “REST API” (Build). Make sure “REST” and “New API” are selected then choose a name and description with the endpoint type being “Regional” and click “create API.” On the “Resources” tab, click on “create method” from the “Actions” drop-down menu and choose “GET”. On the GET setup page, the integration type should be “Lambda Function,” “Lambda Proxy integration” unselected, and the Lambda function that reads from the database selected along with its correct region.<br><br>
 ***Adding The DynamoDB Table***<br>
 From the “Method Execution” page, select “Method Request.” Under “URL Query String Parameters,” click on “Add query string” and add the name of the DynamoDB table key.<br><br>
-***CORS***<br>
+***Adding CORS***<br>
 Next, select “Enable CORS” from the “Actions” drop-down menu. “Access-Control-Allow-Origin” is '*' by default meaning that ANY website or URL can ping the API. It is recommended to only give this access to the URL of the website of the application (the format should precisely be: 'https://www.mydomain.com'). For testing purposes and debugging, keeping the asterisk should be fine, but otherwise it is not recommended. (CORS permissions can be changed at any time by following steps 3 – 4).<br><br>
 
-***Deployment***<br>
+***Setting up Deployment***<br>
 Finally, from the “Actions” drop-down menu, select “Deploy API” then select [New Stage] for the “Deployment Stage” and name the stage “prod” (for convention purposes). After clicking on “Deploy”, the below warning might pop up which can be ignored.
 <p  align="center">
 <img  width="650"  src="https://i.imgur.com/ec2ICaJ.png"  alt="Giving Lambda a role">
