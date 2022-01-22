@@ -91,7 +91,7 @@ let distanceChart = new Chart(distancectx, {
             y: {
                 beginAtZero: true,
                 display: false,
-                max: 120
+                max: 3
             },
             x: {
                 display: false
