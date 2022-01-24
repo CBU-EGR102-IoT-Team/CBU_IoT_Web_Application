@@ -25,6 +25,7 @@ let fullpages = new fullpage('#fullpage', {
     autoScrolling:true,
     scrollOverflow:true,
     fitToSection: true,
+    
 
     onLeave: function(origin, destination, direction){
         let leavingSection = this;
@@ -81,6 +82,7 @@ page.
 function onMiddlePage(){
     let blockScrolling = document.getElementById('connect_display');
     blockScrolling.classList.remove("fp-section");
+    fullpage_api.setScrollOverflow(false);
 }
 
 /*
@@ -90,6 +92,7 @@ has used the capture feature at least one time.
 function onBottomPages(){
     let unBlockScrolling = document.getElementById('capture_display');
     unBlockScrolling.classList.add("fp-section");
+    fullpage_api.setScrollOverflow(true);
 }
 
 /*Enables scrolling to the top page from the middle page.
