@@ -77,7 +77,7 @@ a users collected captures.*/
 .capture {
     position: relative;
     margin: 2.5vh 0;
-    height: 23vh;
+    height: 23%;
     width: 90% !important;
     flex-direction: row;
 }
@@ -123,6 +123,17 @@ application.*/
     width: 100vw;
     font-family: 'Mulish';
     display: grid;
+}
+
+/*Altered version of page
+used to correctly display captures.*/
+.capture_page {
+    height: 100%;
+    display: flex;
+    justify-content:
+    flex-start;
+    flex-direction: column;
+    overflow: visible;
 }
 
 /*The container that holds all data windows.*/
@@ -272,11 +283,11 @@ here.
 }
 
 .background_capture_dark{
-    background-color: #1c2471 !important;
+    background-image: linear-gradient(to bottom, #1c2471 78%, #ff394c) !important;
 }
 
 .background_capture_light{
-    background-image: linear-gradient(#f1f1f1, #7a7ec2) !important;
+    background-image: linear-gradient(to bottom, #7a7ec2, #f1f1f1) !important;
 }
 
 .navbar_dark{
