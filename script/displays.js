@@ -6,6 +6,12 @@ function sleep(duration) {
         }, duration * 1000)
     })
 }
+
+/*let dataPage = document.getElementById("data_display")
+dataPage.style.height = window.innerHeight;
+let capturePage = document.getElementById("capture_display")
+capturePage.style.height = window.innerHeight;*/
+
 /*
 Used to interact with the fullPage.js library.
 
