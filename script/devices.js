@@ -214,7 +214,7 @@ async function settings(){
                 '</div>' +
                 
                 '<div style="height: 50% !important; width: 100% !important;">' +
-                '<h3 class="data_header align_left">The Team</h3>' +
+                '<h3 class="data_header align_left">The Devitia Team</h3>' +
                 '<div class="" style="display: flex; flex-direction: row; width: 100%;">' +
                 '<div class="col-6 align_left sub_header" style="margin: 0px !important; padding: 0px;">' +
                 '<h5>Software</h5>' +
@@ -281,7 +281,7 @@ async function settings(){
             '<p class="sub_header align_left">Contact: mkim@calbaptist.edu</p>' +
             '</div>' +
             
-            '<h3 class="data_header align_left">The Team</h3>' +
+            '<h3 class="data_header align_left">The Devitia Team</h3>' +
             '<div class="" style="display: flex; flex-direction: row; width: 100%;">' +
             '<div class="col-6 align_left sub_header" style="margin: 0px !important; padding: 0px;">' +
             '<h5>Software</h5>' +
