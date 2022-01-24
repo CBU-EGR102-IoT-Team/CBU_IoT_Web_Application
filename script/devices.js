@@ -339,8 +339,8 @@ function toggleTheme(){
         pageBackground.classList.remove("background_dark");
         
         let capturePage = document.getElementById("capture_display");
-        capturePage.classList.add("background_light");
-        capturePage.classList.remove("background_dark");
+        capturePage.classList.add("background_capture_light");
+        capturePage.classList.remove("background_capture_dark");
     }
     else if(theme === "light"){
         let links = document.getElementsByClassName("link_light");
@@ -364,8 +364,8 @@ function toggleTheme(){
         pageBackground.classList.remove("background_light");
         
         let capturePage = document.getElementById("capture_display");
-        capturePage.classList.add("background_dark");
-        capturePage.classList.remove("background_light");
+        capturePage.classList.add("background_capture_dark");
+        capturePage.classList.remove("background_capture_light");
         
         theme = "dark";
     }

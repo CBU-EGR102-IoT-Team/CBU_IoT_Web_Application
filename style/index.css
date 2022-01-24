@@ -271,6 +271,14 @@ here.
     background-image: linear-gradient(to bottom, #7a7ec2, #f1f1f1) !important;
 }
 
+.background_capture_dark{
+    background-color: #1c2471 !important;
+}
+
+.background_capture_light{
+    background-image: linear-gradient(#f1f1f1, #7a7ec2) !important;
+}
+
 .navbar_dark{
     background-color: #1c2471 !important;
 }
