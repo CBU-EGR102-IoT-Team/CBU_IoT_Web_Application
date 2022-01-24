@@ -119,12 +119,10 @@ PAGE HIERARCHY STYLES
 /*Used to provide basic styling to each page of the
 application.*/
 .page {
-    /*height: 100%;*/
+    height: 100%;
     width: 100vw;
     font-family: 'Mulish';
     display: grid;
-    min-height: 100vh;
-    min-height: -webkit-fill-available !important;
 }
 
 /*The container that holds all data windows.*/
