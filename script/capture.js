@@ -13,7 +13,6 @@ let pendingCapture = false;
 
 */
 function captureChartData(){
-    captureAnimation();
     let lightSensor1 = document.getElementById("light_sensor_1").innerHTML;
     let lightSensor2 = document.getElementById("light_sensor_2").innerHTML;
     let distanceSensor1 = document.getElementById("distance_sensor_1").innerHTML;
@@ -27,20 +26,11 @@ function captureChartData(){
     onBottomPages();
 }
 
-async function captureAnimation(){
-    let captureAnimationDiv = document.getElementById("flash");
-    captureAnimationDiv.classList.remove("disabled");
-
-    await sleep(5);
-    captureAnimationDiv.classList.add("disabled");
-}
-
 /*
 Generates the capture card using various html elements.
 
 I know this is messy, but in order to have the correct CSS styling I believe this is the
 only way to do it.
-
 */
 function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, distanceSensor2, voltageSensor1, voltageSensor2){
     captureCount = captureCount + 1;
