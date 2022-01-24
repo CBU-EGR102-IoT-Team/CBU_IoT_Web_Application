@@ -24,6 +24,7 @@ let fullpages = new fullpage('#fullpage', {
     licenseKey: 'E3EEB2F7-135F45D4-B3672D06-FA885484',
     autoScrolling:true,
     scrollOverflow:true,
+    fitToSection: true,
 
     onLeave: function(origin, destination, direction){
         let leavingSection = this;
