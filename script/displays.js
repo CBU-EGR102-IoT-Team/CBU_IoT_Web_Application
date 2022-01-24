@@ -63,7 +63,6 @@ function onTopPage(){
     
     let header = document.getElementById("header");
     header.classList.add("hidden");
-    fullpage_api.reBuild();
 }
 
 /*Enables scrolling to the middle page from the top page.
@@ -72,7 +71,6 @@ USED ONLY IN TRANSITION SO THAT THE LIBRARIES ANIMATION DOES NOT BUG OUT
 function onTransitionPage(){
     let unBlockScrolling = document.getElementById('data_display');
     unBlockScrolling.classList.add("fp-section");
-    fullpage_api.reBuild();
 }
 
 /*
@@ -82,7 +80,6 @@ page.
 function onMiddlePage(){
     let blockScrolling = document.getElementById('connect_display');
     blockScrolling.classList.remove("fp-section");
-    fullpage_api.reBuild();
 }
 
 /*
@@ -92,7 +89,6 @@ has used the capture feature at least one time.
 function onBottomPages(){
     let unBlockScrolling = document.getElementById('capture_display');
     unBlockScrolling.classList.add("fp-section");
-    fullpage_api.reBuild();
 }
 
 /*Enables scrolling to the top page from the middle page.
@@ -102,5 +98,4 @@ function onTransitionPageUp(){
     let unBlockScrolling = document.getElementById('connect_display');
     unBlockScrolling.classList.add("fp-section");
     sleep(1000);
-    fullpage_api.reBuild();
 }
