@@ -123,6 +123,8 @@ application.*/
     width: 100vw;
     font-family: 'Mulish';
     display: grid;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
 }
 
 /*The container that holds all data windows.*/
@@ -331,6 +333,12 @@ a:action .link_dark .link_light{
 
 body{
     font-family: 'Mulish' !important;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
 }
 
 /*------------------------------
@@ -402,64 +410,4 @@ input:checked + .slider:before {
 
 .disabled{
     display: none;
-}
-
-/*Capture Animation*/
-.animation {
-    position: fixed;
-    z-index: 10;
-    width: 100vw;
-    height: 100vh;
-}
-
-.bar_left{
-    position: absolute;
-    height: 0vh;
-    width: 0vw;
-    bottom: 100%;
-}
-
-.bar_right{
-    position: absolute; 
-    height: 0vh;
-    width: 0vw;
-    right: 100%;
-}
-
-.bar_top{
-    position: absolute;
-    height: 0vh;
-    width: 0vw;
-}
-
-.bar_bottom{
-    position: absolute; 
-    height: 0vh;
-    width: 0vw;
-    bottom: 100%;
-    right: 100%;
-}
-
-.animate, .bar_left{
-    height: 100% !important;;
-    width: 10px;
-    background-color: white;
-}
-
-.animate, .bar_right{
-    height: 100% !important;;
-    width: 10px;
-    background-color: white;
-}
-
-.animate, .bar_top{
-    height: 5px !important;
-    width: 100%;
-    background-color: white;
-}
-
-.animate, .bar_bottom{
-    height: 10px !important;;
-    width: 100%;
-    background-color: white;
 }
