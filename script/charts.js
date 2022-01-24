@@ -91,7 +91,7 @@ let distanceChart = new Chart(distancectx, {
             y: {
                 beginAtZero: true,
                 display: false,
-                max: 120
+                max: 3
             },
             x: {
                 display: false
@@ -249,7 +249,7 @@ async function generateChartData(){
         })
         
         updateAllCharts();
-        await sleep(0.1);
+        await sleep(0.3);
 
     }
 }

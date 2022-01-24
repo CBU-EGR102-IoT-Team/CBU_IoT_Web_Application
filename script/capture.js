@@ -24,6 +24,7 @@ function captureChartData(){
     generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, distanceSensor2, voltageSensor1, voltageSensor2);
 
     togglePendingCaptureOn();
+    onBottomPages();
 }
 
 async function captureAnimation(){
