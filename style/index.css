@@ -127,7 +127,7 @@ application.*/
 
 /*The container that holds all data windows.*/
 .data_widget {
-    height: 100vh;
+    height: 100%;
     width: min(700px, 90vw);
     margin: 0 max(5vw, calc(50vw - 350px));
 }
