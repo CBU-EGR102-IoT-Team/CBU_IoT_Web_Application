@@ -81,98 +81,144 @@
 
     <!-- DATA DISPLAY PAGE-->
     <div id="data_display" class="section fp-noscroll" data-anchor="data">
-        <div class="page background_dark">
-            <div class ="data_widget container">
-                <div class="row" style="height: 17%;">
-                    
-                </div>
-                <!-- Distance, Tools, and Light Windows (Top half of data page) -->
-                <div class="row flex-nowrap" style="height: 40%;">
-                    
-                    <!-- Distance Window (Left Side)  -->
-                    <div class="col-auto" style="width: 47%;">
-                        <div class="row" style="height: 100%;">
-                            <div class="container-fluid window">
-                                <div class="true_center" style="width: 100%; height: 30%">
-                                    <h5 class="sub_header">Distance</h5>
-                                    <h1 id="distance_sensor_1" style="display: none;">0</h1>
-                                    <h1 id="distance_sensor_2" style="display: none;">0</h1>
+        <div class="slide">
+            <div class="page background_dark">
+                <div class ="data_widget container">
+                    <div class="row" style="height: 17%;"></div>
+                    <!-- Distance, Tools, and Light Windows (Top half of data page) -->
+                    <div class="row flex-nowrap" style="height: 40%;">
+                        
+                        <!-- Distance Window (Left Side)  -->
+                        <div class="col-auto" style="width: 47%;">
+                            <div class="row" style="height: 100%;">
+                                <div class="container-fluid window">
+                                    <div class="true_center" style="width: 100%; height: 30%">
+                                        <h5 class="sub_header">Distance</h5>
+                                        <h1 id="distance_sensor_1" style="display: none;">0</h1>
+                                        <h1 id="distance_sensor_2" style="display: none;">0</h1>
+                                    </div>
+                                    <div class="justify_center" style="height: 70%; width: 100%">
+                                        <canvas id="distanceChart" style="width: 80%; height: 80%;"></canvas>
+                                    </div>
                                 </div>
-                                <div class="justify_center" style="height: 70%; width: 100%">
-                                    <canvas id="distanceChart" style="width: 80%; height: 80%;"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!--Spacer Column-->
-                    <div class="col-auto ignore_padding" style="width: 6%;"></div>
-                    
-                    <!-- Tools and Light Windows (Right Side) -->
-                    <div class="col-auto" style="width: 47%;">
-                        <div class="row" style="height: 30%;">
-                            <div class="container-fluid window true_center">
-                                <a id="disconnectDeviceButton" onClick="captureChartData();" style="color: #ff394c;">
-                                    <i class="bi bi-camera-fill fa-3x"></i>
-                                </a>
                             </div>
                         </div>
                         
-                        <!--Spacer Row-->
-                        <div class="row" style="height: 5%;"></div>
+                        <!--Spacer Column-->
+                        <div class="col-auto ignore_padding" style="width: 6%;"></div>
                         
-                        <div class="row" style="height: 65%;">
-                            
-                            <div class="container-fluid window">
-                                <div class="justify_center" style="width: 100%; height: 30%">
-                                    <h5 class="sub_header">Light</h5>
+                        <!-- Tools and Light Windows (Right Side) -->
+                        <div class="col-auto" style="width: 47%;">
+                            <div class="row" style="height: 30%;">
+                                <div class="container-fluid window true_center">
+                                    <a id="disconnectDeviceButton" onClick="captureChartData();" style="color: #ff394c;">
+                                        <i class="bi bi-camera-fill fa-3x"></i>
+                                    </a>
                                 </div>
-                                <h6 id="light_sensor_1" class="align_right data_header sensorB_header">0</h6>
-                                <div class="justify_center" style="height: 70%; width: 100%">
-                                    <canvas id="lightChart" style="width: 60%; height: 60%;"></canvas>
-                                </div>
-                                <h6 id="light_sensor_2" class="align_left data_header sensorA_header">0</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!--Spacer Row-->
-                <div class="row" style="height: 3%;"></div>
-                
-                <!-- Voltage -->
-                <div class="row" style="height: 21%;">
-                    <div class="col-auto ignore_padding" style="width: 100%;">
-                        <div class="container-fluid window horizontal_window">
-                            <div class="true_center" style="width: 25%; height: 100%;">
-                                <h2 id="voltage_sensor_1" class="data_subheader sensorA_header">0</h2>
                             </div>
                             
-                            <div class="true_center" style="width: 50%; height: 100%;">
-                                <div class="true_center" style="width: 100%; height: 30%">
-                                    <h5 class="sub_header">Voltage</h5>
+                            <!--Spacer Row-->
+                            <div class="row" style="height: 5%;"></div>
+                            
+                            <div class="row" style="height: 65%;">
+                                
+                                <div class="container-fluid window">
+                                    <div class="justify_center" style="width: 100%; height: 30%">
+                                        <h5 class="sub_header">Light</h5>
+                                    </div>
+                                    <h6 id="light_sensor_1" class="align_right data_header sensorB_header">0</h6>
+                                    <div class="justify_center" style="height: 70%; width: 100%">
+                                        <canvas id="lightChart" style="width: 60%; height: 60%;"></canvas>
+                                    </div>
+                                    <h6 id="light_sensor_2" class="align_left data_header sensorA_header">0</h6>
                                 </div>
-                                <div class="justify_center" style="height: 70%; width: 100%">
-                                    <canvas id="voltageChart" style="width: 100%; height: 50%;"></canvas>
-                                </div>
-                            </div>
-
-                            <div class="true_center" style="width: 25%; height: 100%">
-                                <h2 id="voltage_sensor_2" class="data_subheader sensorB_header">0</h2>
                             </div>
                         </div>
                     </div>
+                    
+                    <!--Spacer Row-->
+                    <div class="row" style="height: 3%;"></div>
+                    
+                    <!-- Voltage -->
+                    <div class="row" style="height: 21%;">
+                        <div class="col-auto ignore_padding" style="width: 100%;">
+                            <div class="container-fluid window horizontal_window">
+                                <div class="true_center" style="width: 25%; height: 100%;">
+                                    <h2 id="voltage_sensor_1" class="data_subheader sensorA_header">0</h2>
+                                </div>
+                                
+                                <div class="true_center" style="width: 50%; height: 100%;">
+                                    <div class="true_center" style="width: 100%; height: 30%">
+                                        <h5 class="sub_header">Voltage</h5>
+                                    </div>
+                                    <div class="justify_center" style="height: 70%; width: 100%">
+                                        <canvas id="voltageChart" style="width: 100%; height: 50%;"></canvas>
+                                    </div>
+                                </div>
+    
+                                <div class="true_center" style="width: 25%; height: 100%">
+                                    <h2 id="voltage_sensor_2" class="data_subheader sensorB_header">0</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            
+                    <div style="height: 19% !important;">
+                        <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_aql2ch8v.json"  background="transparent"  speed="1" style="height:20vh !important;" loop autoplay class="hidden" id="new_capture_animation"></lottie-player>
+                    </div>
                 </div>
-                        
-                <div style="height: 19% !important;">
-                    <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_aql2ch8v.json"  background="transparent"  speed="1" style="height:20vh !important;" loop autoplay class="hidden" id="new_capture_animation"></lottie-player>
+            </div>
+        </div>
+        <div class="slide">
+            <div class="page background_dark">
+                <div class ="data_widget container">
+                    <!--Spacer Row-->
+                    <div class="row" style="height: 17%;"></div>
+                    
+                    <!-- Energy Usage Graph -->
+                    <div class="row flex-nowrap" style="height: 64%;">
+                        <div class="col-auto ignore_padding" style="width: 100%;">
+                            <div class="container-fluid window horizontal_window">
+                                <div class="true_center" style="width: 100%; height: 100%;">
+                                    <div class="true_center" style="width: 100%; height: 30%">
+                                        <h5 class="sub_header">Energy Usage</h5>
+                                    </div>
+                                    <div class="justify_center" style="height: 70%; width: 100%">
+                                        <canvas id="energyChart" style="width: 100%; height: 50%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--Spacer Row-->
+                    <div class="row" style="height: 3%;"></div>
+                    
+                    <!-- Energy Usage Numeric -->
+                    <div class="hidden">
+                        <div class="row flex-nowrap" style="height: 21%;">
+                            <div class="col-auto ignore_padding" style="width: 100%;">
+                                <div class="container-fluid window horizontal_window">
+                                    <div class="true_center" style="width: 100%; height: 100%;">
+                                        <div class="true_center" style="width: 100%; height: 30%">
+                                            <h5 class="sub_header">Placeholder</h5>
+                                        </div>
+                                        <div class="justify_center" style="height: 70%; width: 100%">
+                                            <h2 id="energy" class="data_subheader sensorA_header">0</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                 </div>
             </div>
         </div>
     </div>
 
     <!-- CAPTURE DISPLAY PAGE-->
-    <!-- -->
     <div id="capture_display" class="section background_capture_dark" data-anchor="captures" style="display: flex;justify-content: flex-start; flex-direction: column;">
             <div id="capture_page" class="true_center">
                 <!--Spacer Row-->

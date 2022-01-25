@@ -91,7 +91,7 @@ let distanceChart = new Chart(distancectx, {
             y: {
                 beginAtZero: true,
                 display: false,
-                max: 3
+                max: 50
             },
             x: {
                 display: false
@@ -182,6 +182,64 @@ let voltageChart = new Chart(voltagectx, {
     }
 });
 
+// --------------------------------
+// Energy sensor chart.js definition
+// --------------------------------
+let energyctx = document.getElementById("energyChart").getContext('2d');
+let energyChart = new Chart(energyctx, {
+    type: 'line',
+    data: {
+        labels: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+        datasets: [
+            {
+                label: '',
+                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                fill: false,
+                borderColor: 'rgba(122, 126, 194, 1)',
+                backgroundColor: 'rgba(122, 126, 194, 1)',
+                borderWidth: 4
+            }
+        ]
+    },
+    options: {
+        yAxes: [{
+          scaleLabel: {
+            display: false,
+            labelString: 'value',
+          },
+          ticks: {
+            max: 100,
+            min: -100
+          }
+        }],
+        pointStyle: 'line',
+        layout: {
+            padding: {
+                left: 15,
+                right: 15
+            }
+        },
+        plugins:{
+            legend:{
+                display: false
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                display: true,
+                min: 0,
+            },
+            x: {
+                display: false
+            }
+        },
+        events: [],
+        responsive: true, // Instruct chart js to respond nicely.
+        maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height
+    }
+});
+
 
 /*
 Updates the data within each chart with the new data being displayed on the webpage.
@@ -212,6 +270,17 @@ function updateAllCharts(){
     }
 
     voltageChart.update();
+    
+    for(let i = 0; i < energyChart.data.datasets.length; i++){
+        for(let j = 0; j < energyChart.data.datasets[i].data.length - 1; j++){
+            let shiftedValue = j + 1;
+            energyChart.data.datasets[i].data[j] = energyChart.data.datasets[i].data[shiftedValue];
+        }
+        let sensorID = 'energy';
+        energyChart.data.datasets[i].data[energyChart.data.datasets[i].data.length - 1] = document.getElementById(sensorID).innerHTML;
+    }
+
+    energyChart.update();
 }
 
 // Used along with the generateChartData method to generate data constantly.
@@ -229,6 +298,7 @@ async function generateChartData(){
     let distanceSensorB = document.getElementById("distance_sensor_2");
     let voltageSensorA = document.getElementById("voltage_sensor_1");
     let voltageSensorB = document.getElementById("voltage_sensor_2");
+    let energy = document.getElementById("energy");
     
     while(allowDataGeneration == true){
         $.ajax({
@@ -244,6 +314,7 @@ async function generateChartData(){
                     distanceSensorB.innerHTML = data["data"]["distanceB"];
                     voltageSensorA.innerHTML = data["data"]["voltageA"];
                     voltageSensorB.innerHTML = data["data"]["voltageB"];
+                    energy.innerHTML = data["data"]["energy"];
                 }
             }
         })

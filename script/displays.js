@@ -25,6 +25,7 @@ let fullpages = new fullpage('#fullpage', {
     autoScrolling:true,
     scrollOverflow:true,
     fitToSection: true,
+    controlArrows: false,
 
     
 
