@@ -91,7 +91,7 @@ let distanceChart = new Chart(distancectx, {
             y: {
                 beginAtZero: true,
                 display: false,
-                max: 50
+                max: 200
             },
             x: {
                 display: false
@@ -169,7 +169,7 @@ let voltageChart = new Chart(voltagectx, {
             y: {
                 beginAtZero: true,
                 display: false,
-                max: 35,
+                max: 7,
                 min: 0,
             },
             x: {
