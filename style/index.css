@@ -153,6 +153,60 @@ provides the user with the bots id and the settings icon.*/
 }
 
 /*------------------------------
+ADMIN PAGE STYLES
+------------------------------*/
+
+tbody::after, tr::after {
+    content: '';
+    display: block;
+    position: relative;
+    height: 1px;
+    width: 100%;
+    background: #0c108e;
+}
+
+.table-header {
+    place-content: center;
+    font-weight: normal;
+    color: #0c108e !important;
+    text-align: center;
+    width: 80px !important;
+}
+
+.table-cell {
+    place-content: center;
+    text-align: center;
+    width: 80px;
+}
+
+.controls {
+    position: relative;
+    bottom: 4px;
+    padding: 0;
+}
+
+.id-field, .controls-top, .controls-bottom {
+    place-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 80px;
+    height: 20px;
+}
+
+.id-field {
+    text-align: center;
+}
+
+.ctrl-up-all, .ctrl-up, .ctrl-dn, .ctrl-dn-all {
+    padding: 0px 8px;
+}
+
+.ctrl-up-all:active, .ctrl-up:active, .ctrl-dn:active, .ctrl-dn-all:active {
+    background: #cccccc;
+}
+
+/*------------------------------
 TEXT STYLES
 ------------------------------*/
 

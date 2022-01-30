@@ -310,8 +310,8 @@ async function generateChartData(){
                 if(statusCode === 200){
                     lightSensorA.innerHTML = data["data"]["lightA"];
                     lightSensorB.innerHTML = data["data"]["lightB"];
-                    distanceSensorA.innerHTML = data["data"]["distanceA"];
-                    distanceSensorB.innerHTML = data["data"]["distanceB"];
+                    distanceSensorA.innerHTML = data["data"]["distanceA"].toFixed(1);
+                    distanceSensorB.innerHTML = data["data"]["distanceB"].toFixed(1);
                     voltageSensorA.innerHTML = data["data"]["voltageA"];
                     voltageSensorB.innerHTML = data["data"]["voltageB"];
                     energy.innerHTML = data["data"]["energy"];
@@ -323,4 +323,12 @@ async function generateChartData(){
         await sleep(0.3);
 
     }
+}
+
+//Resets bot's data and energy (student view)
+function resetThisBotData() {
+    $.ajax({
+            type: 'PUT',
+            url: "https://qm6z7raeic.execute-api.us-west-1.amazonaws.com/prod/reset-student?botid="+connectedBotID
+    })
 }

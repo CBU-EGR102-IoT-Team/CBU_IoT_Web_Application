@@ -17,6 +17,11 @@
         <link rel="stylesheet" type="text/css" href="style/bootstrap-overrides.css" />
         <link rel="stylesheet" type="text/css" href="style/index.css" />
         <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+        <style>
+            :root {
+                overflow: hidden;
+            }
+        </style>
     
         <!-- SCRIPTS (Only scripts that do not interact directly with the HTML that we have written)-->
         <script type="text/javascript" src="script/scrolloverflow.js"></script>
@@ -26,30 +31,56 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.0.2/cleave.min.js" integrity="sha512-SvgzybymTn9KvnNGu0HxXiGoNeOi0TTK7viiG0EGn2Qbeu/NFi3JdWrJs2JHiGA1Lph+dxiDv5F9gDlcgBzjfA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     
-    <body>
-        <!-- CONNECT TO BOT / LOGIN PAGE -->
-        <section id="connect_display">
-            <div class="page background_dark">
-                
-                <div style="height: 13vh;">
-                    <div class="logo_wrapper">
-                         <img src="logo.png" alt="Sensible Logo" class="logo">
-                    </div> 
+    <body onload="loadBotData();" style="max-height: 100vh; width: 100vw; overflow: hidden;">
+        <div class="page background_dark" style="height: 100vh; overflow: hidden;">
+            <header class="navbar navbar_dark" style="width: 100vw;">
+                <div style="width: 24%;">
+                    <img src="https://img.icons8.com/external-becris-lineal-becris/30/ffffff/external-refresh-mintab-for-ios-becris-lineal-becris.png" onClick="resetBotData()"/>
                 </div>
-                
-                <div style="height: 30vh; width: 100%">
-                    <div class="container-fluid transparent_window true_center">
-                        <form class="form-group" onsubmit="return false">
-                            <div class="paragraph align_left"><h6> Please enter your bot ID</h6></div>
-                            <input type="text" class="textfield" placeholder= "****###" id="deviceNumber" autocomplete="off" />
-                            <div class="submit_wrapper">
-                                <button class="submit" onClick="getDevice();"><h class="textfield">Connect</h></button>
-                            </div>
-                        </form>
-                        <h6><a href="#" onClick="deviceHelp();" class="link_dark">Need Help?</a></h6>
-                    </div> 
+                <div style="width: 52%;">
+                    <h3 id="deviceNumberHeader" class="header">ADMIN VIEW</h3>
                 </div>
-            </div>
-        </section>
+                <div class="icon_wrapper" style="width: 24%;">
+                    <img src="icon.png" alt="Sensible Logo" class="icon">
+                </div>
+            </header>
+            
+            <template id="control-template">
+                <td class="controls">
+                    <div class="controls-top">
+                        <div class="ctrl-up-all">
+                            <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/20/000000/external-up-arrows-dreamstale-lineal-dreamstale-11.png"/>
+                        </div>
+                        <div class="ctrl-up">
+                            <img src="https://img.icons8.com/ios-filled/24/000000/long-arrow-up.png"/>
+                        </div>
+                    </div>
+                    <div class="id-field"></div>
+                    <div class="controls-bottom">
+                        <div class="ctrl-dn-all">
+                            <img src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/20/000000/external-bottom-arrows-dreamstale-lineal-dreamstale-3.png"/>
+                        </div>
+                        
+                        <div class="ctrl-dn">
+                            <img src="https://img.icons8.com/ios-filled/24/000000/down--v1.png"/>
+                        </div>
+                    </div>
+                </td>
+            </template>
+            <table id="bot_info_container" class="window" style="width: unset; height: unset; 
+                    position: absolute; top: 60px; bottom: 8px; left: 8px; right: 8px; overflow: scroll;">
+                <tr>
+                    <th class="table-header">Bot ID</th>
+                    <th class="table-header">Distance</th>
+                    <th class="table-header">Light</th>
+                    <th class="table-header">Voltage</th>
+                    <th class="table-header">Energy</th>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SCRIPTS -->
+        <script type="text/javascript" src="script/admin.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </body>
 </html>
