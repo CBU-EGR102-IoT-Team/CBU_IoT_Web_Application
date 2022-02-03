@@ -1,14 +1,5 @@
 var botDataDict = {};
-var allowDataGeneration = false
-
-Element.prototype.insertChildAtIndex = function(child, index) {
-  if (!index) index = 0
-  if (index >= this.children.length) {
-    this.appendChild(child)
-  } else {
-    this.insertBefore(child, this.children[index])
-  }
-}
+var allowDataGeneration = false;
 
 function loadBotData() {
     $.ajax({
@@ -41,16 +32,16 @@ function createBotRow(data) {
     dataRow.appendChild(newBox);
     
     // Distance
-    dataRow.innerHTML += `\n<td class="distance table-cell"><p>${data.distanceA}<br>${data.distanceB}</p></td>`;
+    dataRow.innerHTML += `\n<td class="distance table-cell"><p>${parseFloat(data.distanceA).toFixed(1)}<br>${parseFloat(data.distanceB).toFixed(1)}</p></td>`;
     
     // Light
-    dataRow.innerHTML += `\n<td class="light table-cell"><p>${data.lightA}<br>${data.lightB}</p></td>`;
+    dataRow.innerHTML += `\n<td class="light table-cell"><p>${parseFloat(data.lightA).toFixed(1)}<br>${parseFloat(data.lightB).toFixed(1)}</p></td>`;
     
     // Voltage
-    dataRow.innerHTML += `\n<td class="voltage table-cell"><p>${data.voltageA}<br>${data.voltageB}</p></td>`;
+    dataRow.innerHTML += `\n<td class="voltage table-cell"><p>${parseFloat(data.voltageA).toFixed(1)}<br>${parseFloat(data.voltageB).toFixed(1)}</p></td>`;
     
     // Energy
-    dataRow.innerHTML += `\n<td class="energy table-cell"><p>${data.energy}</p></td>`;
+    dataRow.innerHTML += `\n<td class="energy table-cell"><p>${parseFloat(data.energy).toFixed(1)}</p></td>`;
 
     botDataDict[id] = dataRow;
     document.getElementById('bot_info_container').appendChild(dataRow);
@@ -92,7 +83,7 @@ function moveUp(id) {
     let parent = row.parentNode;
     let prevList = $(row).prevAll();
     let newRow = botDataDict[id] = $(row).clone(true, true)[0];
-    parent.insertBefore(newRow, prevList.length > 2 ? prevList[0]: $('.data-row')[1]);
+    parent.insertBefore(newRow, prevList.length >= 2 ? prevList[0]: $('.data-row')[1]);
     botDataDict[id] = newRow;
     row.remove();
 }
@@ -127,7 +118,7 @@ function resetBotData() {
    $.ajax({
         type: 'PUT',
         url: "https://qm6z7raeic.execute-api.us-west-1.amazonaws.com/prod/reset"
-   })
+   });
 }
 
 async function updateAdminPage() {
@@ -138,20 +129,20 @@ async function updateAdminPage() {
             url: "https://qm6z7raeic.execute-api.us-west-1.amazonaws.com/prod/admin",
             async: false,
             success: function(data){
-                let statusCode = data["statusCode"];
+                let statusCode = data.statusCode;
                 if(statusCode === 200){
-                    for (let botData of data['data']) {
-                        let id = botData['botId'];
+                    for (let botData of data.data) {
+                        let id = botData.botId;
                         
                         let row = botDataDict[id];
                         
-                        $(row).find('.distance').innerHTML = `<p>${data.distanceA}<br>${data.distanceB}</p>`;
-                        $(row).find('.light').innerHTML = `<p>${data.lightA}<br>${data.lightB}</p>`;
-                        $(row).find('.voltage').innerHTML = `<p>${data.voltageA}<br>${data.voltageB}</p>`;
-                        $(row).find('.energy').innerHTML = `<p>${data.energy}</p>`;
+                        $(row).find('.distance')[0].innerHTML = `<p>${parseFloat(botData.distanceA).toFixed(1)}<br>${parseFloat(botData.distanceB).toFixed(1)}</p>`;
+                        $(row).find('.light')[0].innerHTML = `<p>${parseFloat(botData.lightA).toFixed(1)}<br>${parseFloat(botData.lightB).toFixed(1)}</p>`;
+                        $(row).find('.voltage')[0].innerHTML = `<p>${parseFloat(botData.voltageA).toFixed(1)}<br>${parseFloat(botData.voltageB).toFixed(1)}</p>`;
+                        $(row).find('.energy')[0].innerHTML = `<p>${parseFloat(botData.energy).toFixed(1)}</p>`;
                     }
                 }
             }
-        })
-    }, 300);
+        });
+    }, 500);
 }

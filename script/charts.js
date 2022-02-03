@@ -329,6 +329,9 @@ async function generateChartData(){
 function resetThisBotData() {
     $.ajax({
             type: 'PUT',
-            url: "https://qm6z7raeic.execute-api.us-west-1.amazonaws.com/prod/reset-student?botid="+connectedBotID
+            url: 'https://qm6z7raeic.execute-api.us-west-1.amazonaws.com/prod/reset-student?botid='+connectedBotID,
+            success: (data) => {
+                console.log(data);
+            }
     })
 }
