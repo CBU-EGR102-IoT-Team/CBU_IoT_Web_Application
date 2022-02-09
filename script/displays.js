@@ -21,7 +21,6 @@ without increasing the complexity needlessly.
 Also adds some cool animations when loading in the new page.
 */
 let fullpages = new fullpage('#fullpage', {
-    licenseKey: 'E3EEB2F7-135F45D4-B3672D06-FA885484',
     autoScrolling:true,
     scrollOverflow:true,
     fitToSection: true,
