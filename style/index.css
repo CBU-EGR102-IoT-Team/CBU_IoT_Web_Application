@@ -185,6 +185,25 @@ tbody::after, tr::after {
     padding: 0;
 }
 
+.bot-kill {
+    height: 100%;
+    transition: 200ms;
+}
+
+.bot-kill:active {
+    background-color: #cccccc;
+    transition: 50ms;
+}
+
+.kill-btn {
+    width: 1em;
+    height: 1em;
+    margin: 1em;
+    background: #0c108e;
+    border-radius: 4px;
+}
+
+
 .id-field, .controls-top, .controls-bottom {
     place-content: center;
     display: flex;

@@ -18,11 +18,28 @@ function loadBotData() {
     });
 }
 
+function killBotLoop(id) {
+    $.ajax({
+        type: 'PUT',
+        url: `https://qm6z7raeic.execute-api.us-west-1.amazonaws.com/prod/kill-bot-loop?botid=${id}`,
+        
+        success: () => {
+            console.log('Bot Loop will be terminated');
+        }
+    })
+}
+
 function createBotRow(data) {
     let id = data.botId;
     // create table row
     let dataRow = document.createElement('tr');
     dataRow.classList.add('data-row');
+    
+    // kill button
+    let killCell = document.createElement('td');
+    killCell.classList.add('bot-kill')
+    killCell.innerHTML = "<div class=\"kill-btn\"></div>";
+    dataRow.appendChild(killCell);
     
     // controls
     let controlBox = document.getElementById('control-template');
@@ -45,6 +62,10 @@ function createBotRow(data) {
 
     botDataDict[id] = dataRow;
     document.getElementById('bot_info_container').appendChild(dataRow);
+    
+    $('.bot-kill').slice(-1).mouseup(() => {
+        killBotLoop(id); 
+    });
     
     $('.ctrl-up-all').slice(-1).mouseup(() => {
         moveTop(id);
