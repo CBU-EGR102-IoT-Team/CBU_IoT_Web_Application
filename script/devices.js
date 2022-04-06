@@ -9,7 +9,7 @@ let theme = "dark"
 async function getDevice(){
     let input = document.getElementById("deviceNumber").value;
     input = input.substr(4);
-    if(input != "" && parseInt(input) > 0 && parseInt(input) <= 12 && !(isNaN(input))){
+    if(input != "" && parseInt(input) > 0 && parseInt(input) <= 35 && !(isNaN(input))){
 
         $.ajax({
             type: 'GET',
