@@ -59,9 +59,12 @@ function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, dis
     distanceCaptureCanvas.id = `c${captureCount}-d`;
     
     let distanceCaptureContainer = document.createElement('div');
-    distanceCaptureContainer.style.height = '19vh';
+    distanceCaptureContainer.style.height = '12vh';
     distanceCaptureContainer.style.width = '30vw';
     distanceCaptureContainer.style.padding = '2vw';
+
+    distanceCaptureContainer.innerHTML = `<p>${distanceChart.data.datasets[0].data[0]}</p>\n` +
+                                        `<p>${distanceChart.data.datasets[0].data[1]}</p>`;
     
     distanceCaptureContainer.appendChild(distanceCaptureCanvas);
     distanceSliver.appendChild(distanceCaptureContainer);
@@ -85,19 +88,12 @@ function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, dis
     lightCaptureContainer.style.height = '12vh';
     lightCaptureContainer.style.width = '30vw';
     lightCaptureContainer.style.padding = '2vw';
+
+    lightCaptureContainer.innerHTML = `<p>${lightChart.data.datasets[0].data[0]}</p>\n` +
+                                        `<p>${lightChart.data.datasets[0].data[1]}</p>`;
     
     lightCaptureContainer.appendChild(lightCaptureCanvas);
-    
-    let ls1 = document.getElementById('light_sensor_1').cloneNode(true);
-    ls1.style.paddingRight = '5px';
-    lightSliver.appendChild(ls1);
-    
     lightSliver.appendChild(lightCaptureContainer);
-    
-    let ls2 = document.getElementById('light_sensor_2').cloneNode(true);
-    ls2.style.paddingLeft = '5px';
-    lightSliver.appendChild(ls2);
-    
     newCapture.appendChild(lightSliver);
     
     // Separator
@@ -115,9 +111,12 @@ function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, dis
     voltageCaptureCanvas.id = `c${captureCount}-v`;
     
     let voltageCaptureContainer = document.createElement('div');
-    voltageCaptureContainer.style.height = '19vh';
+    voltageCaptureContainer.style.height = '12vh';
     voltageCaptureContainer.style.width = '30vw';
     voltageCaptureContainer.style.padding = '2vw';
+
+    voltageCaptureContainer.innerHTML = `<p>${voltageChart.data.datasets[0].data[2]}</p>\n` +
+                                        `<p>${voltageChart.data.datasets[1].data[2]}</p>`;
     
     voltageCaptureContainer.appendChild(voltageCaptureCanvas);
     voltageSliver.appendChild(voltageCaptureContainer);
@@ -126,10 +125,6 @@ function generateCaptureDisplay(lightSensor1, lightSensor2, distanceSensor1, dis
     let capturePage = document.getElementById("capture_page");
     capturePage.style.overflow = 'visible';
     capturePage.appendChild(newCapture);
-    
-    cloneChart(distanceChart, document.getElementById(`c${captureCount}-d`).getContext('2d'), true);
-    cloneChart(lightChart, document.getElementById(`c${captureCount}-l`).getContext('2d'), false);
-    cloneChart(voltageChart, document.getElementById(`c${captureCount}-v`).getContext('2d'), true);
 }
 
 /*
